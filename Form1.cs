@@ -94,9 +94,8 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void Start_Button_Click(object sender, EventArgs e)
         {
-            // Zet de Start en Reset button uit om bugs te voorkomen (deze worden later weer aangezet)
-            Start_Button.Enabled = false;
-            Reset_Button.Enabled = false;
+            // Zet de Star button uit om bugs te voorkomen (deze worden later weer aangezet)
+            Start_Button.Enabled = false; 
 
             // Initialiseert het game venster
             Game_Screen.Text = "Memory Game";
