@@ -300,7 +300,7 @@ namespace Memory_Project
                     card.BackgroundImage = icons[rngNum];
                     icons.RemoveAt(rngNum);
                     card.Image = Image.FromFile(@"./imgs/back.png");
-                    card.Size = new Size(100, 150);
+                    card.Size = new Size(104, 154);
                     card.Location = new Point(x, y);
                     card.Cursor = Cursors.Hand;
                     card.Click += new EventHandler(this.Card_Click);
