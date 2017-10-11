@@ -12,19 +12,24 @@ namespace Memory_Project
 {
     public partial class Start_Screen : Form
     {
-        bool GridInit = false;
+        // Variabelen
+        bool GridInit = false; // Wordt gebruikt om te kijken of de 4x4 grid al is aangemaakt => zie InitGrid()
 
-        Form Game_Screen = new Form();
+        Form Game_Screen = new Form(); // Het scherm waarin het spel wordt gespeeld
 
-        Button Reset_Button = new Button();
+        Button Reset_Button = new Button(); // Reset knop die de grid reset => zie Reset_Button_Click
 
-        Random rng = new Random();
+        Random rng = new Random(); // Wordt gebruikt om een willekeurig plaatje te kiezen => zie InitGrid()
 
-        List<Image> icons = new List<Image>();
+        List<Image> icons = new List<Image>(); // De plaatjes die gebruikt worden voor het spel => zie de #region Foto's en InitGrid()
 
+        // Deze 2 variabelen worden gebruikt om te bepalen welke 2 kaarten worden aangeklikt
         PictureBox firstClicked = null;
         PictureBox secondClicked = null;
 
+        /// <summary>
+        /// Zorgt ervoor dat het menu in het midden van het scherm komt en vult de icons List op met plaatjes
+        /// </summary>
         public Start_Screen()
         {
             InitializeComponent();
@@ -67,6 +72,11 @@ namespace Memory_Project
             #endregion Foto's 
         }
 
+        /// <summary>
+        /// Hide() de Game_Screen i.p.v. Close() wanneer de gebruiker op de sluitknop klikt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Game_Screen_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -77,19 +87,27 @@ namespace Memory_Project
             }
         }
 
+        /// <summary>
+        /// Wat er gebeurt tijdens de klik op de Start_Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Start_Button_Click(object sender, EventArgs e)
         {
+            // Zet de Start en Reset button uit om bugs te voorkomen (deze worden later weer aangezet)
             Start_Button.Enabled = false;
             Reset_Button.Enabled = false;
 
+            // Initialiseert het game venster
             Game_Screen.Text = "Memory Game";
             Game_Screen.Icon = this.Icon;
             Game_Screen.StartPosition = FormStartPosition.CenterScreen;
             Game_Screen.Size = new Size(650, 665);
             Game_Screen.Show();
+            // Maakt de FormClosing event aan
             Game_Screen.FormClosing += new FormClosingEventHandler(Game_Screen_FormClosing);
 
-
+            // Kijkt of de grid al gemaakt is; zo ja = maak de grid en de UI (Reset knop en highscores) aan
             if (GridInit == false)
             {
                 InitGrid();
@@ -97,13 +115,21 @@ namespace Memory_Project
             }
         }
 
+        /// <summary>
+        ///  Wat er gebeurt tijdens de klik op de Reset_Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Reset_Button_Click(object sender, EventArgs e)
         {
+            // Reset de mogelijk aangeklikte knoppen om bugs te voorkomen
             firstClicked = null;
             secondClicked = null;
 
+            // Verwijdert alles van de Game_Screen
             Game_Screen.Controls.Clear();
 
+            // Verwijdert alles uit de List van plaatjes en zet weer de goeie plaatjes erin
             icons.Clear();
             #region Foto's
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
@@ -143,30 +169,49 @@ namespace Memory_Project
             InitGrid();
             InitUI();
         }
+
+        /// <summary>
+        /// Wat er gebeurt tijdens de klik op een kaart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Card_Click(object sender, EventArgs e)
         {
+            // Zet de reset knop aan
             Reset_Button.Enabled = true;
+
+            // De aangeklikte knop heet nu clickedPic
             PictureBox clickedPic = sender as PictureBox;
+
+            // Zet de aangeklikte knop uit zodat de gebruiker hem niet voor de 2e keer kan aanklikken
             clickedPic.Enabled = false;
+            // Maakt het voorgrond plaatje onzichtbaar zodat de BackgroundImage te zien is
             clickedPic.Image = null;
+            // Als dit de eerste plaatje is die wordt aangeklikt = firstClicked, zo niet = er gebeurt niks
             if(firstClicked == null)
             {
                 firstClicked = clickedPic;
                 return;
             }
 
+            // Als firstClicked al bestaat en secondClicked niet = secondClicked wordt het 2e aangeklikte plaatje
             if(firstClicked != null && secondClicked == null)
             {
                 secondClicked = clickedPic;
+
+                // Als de plaatjes NIET hetzelfde zijn = zet het voorgrond plaatje weer aan => zie timer1_Tick
                 if (firstClicked.BackgroundImage.Tag != secondClicked.BackgroundImage.Tag)
                 {
                     foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
                     {
                         pic.Enabled = false;
                     }
+                    // Zet de reset knop tijdelijk uit om bugs te voorkomen
                     Reset_Button.Enabled = false;
                     timer1.Start();
                 }
+                // Als de plaatjes wel gelijk zijn = hou het plaatje aan, reset firstClicked en secondClicker en kijk voor winnaar
+                // => zie CheckWinner()
                 else
                 {
                     foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
@@ -185,6 +230,9 @@ namespace Memory_Project
             }   
         }
 
+        /// <summary>
+        /// Kijkt of er een winnaar is
+        /// </summary>
         void CheckWinner()
         {
             foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
@@ -195,6 +243,7 @@ namespace Memory_Project
                 }
             }
 
+            // De messagebox die wordt weergegeven als de gebruiker wint 
             MessageBox.Show("Je hebt gewonnen!", "Gefeliciteerd");
             #region Foto's
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
@@ -231,6 +280,10 @@ namespace Memory_Project
             icons[15].Tag = "7";
 #endregion Foto's 
         }
+
+        /// <summary>
+        /// Maakt de 4x4 grid van plaatjes
+        /// </summary>
         void InitGrid()
         {
             GridInit = true;
@@ -262,6 +315,9 @@ namespace Memory_Project
             }
         }
 
+        /// <summary>
+        /// Maakt de resetknop en highscore (WORK IN PROGRESS)
+        /// </summary>
         void InitUI()
         {
             Label scoreLabel = new Label();
@@ -277,6 +333,13 @@ namespace Memory_Project
             Game_Screen.Controls.Add(Reset_Button);
             Reset_Button.Click += new EventHandler(this.Reset_Button_Click);
         }
+
+        /// <summary>
+        /// De timer die afgaat wanneer 2 VERSCHILLENDE foto's worden aangeklikt (zodat de gebruiker wat tijd heeft
+        /// om te kijken wat die fout had aangeklikt)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             Reset_Button.Enabled = true;
@@ -298,6 +361,11 @@ namespace Memory_Project
             secondClicked = null;
         }
 
+        /// <summary>
+        /// De omleiding naar onze GitHub wanneer de link wordt aangeklikt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GitHub_Link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com/pprotas/Memory_Game");
