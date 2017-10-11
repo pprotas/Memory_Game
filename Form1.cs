@@ -82,7 +82,12 @@ namespace Memory_Project
             Game_Screen.Text = "Memory Game";
             Game_Screen.Icon = this.Icon;
             Game_Screen.StartPosition = FormStartPosition.CenterScreen;
-            Game_Screen.Size = new Size(440, 665);
+            Game_Screen.Size = new Size(650, 665);
+            Label scoreLabel = new Label();
+            scoreLabel.Location = new Point(500, 5);
+            scoreLabel.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
+            scoreLabel.Text = "Score: ";
+            Game_Screen.Controls.Add(scoreLabel);
             Game_Screen.Show();
             Game_Screen.FormClosing += new FormClosingEventHandler(Game_Screen_FormClosing);
 
@@ -108,7 +113,7 @@ namespace Memory_Project
                 secondClicked = clickedPic;
                 if (firstClicked.BackgroundImage.Tag != secondClicked.BackgroundImage.Tag)
                 {
-                    foreach(PictureBox pic in Game_Screen.Controls)
+                    foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
                     {
                         pic.Enabled = false;
                     }
@@ -116,7 +121,7 @@ namespace Memory_Project
                 }
                 else
                 {
-                    foreach(PictureBox pic in Game_Screen.Controls)
+                    foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
                     {
                         if(pic.Image == null)
                         {
@@ -134,7 +139,7 @@ namespace Memory_Project
 
         void CheckWinner()
         {
-            foreach(PictureBox pic in Game_Screen.Controls)
+            foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
             {
                 if(pic.Image != null)
                 {
@@ -194,6 +199,7 @@ namespace Memory_Project
                 {
                     PictureBox card = new PictureBox();
                     int rngNum = rng.Next(icons.Count);
+                    card.BorderStyle = BorderStyle.Fixed3D;
                     card.BackgroundImage = icons[rngNum];
                     icons.RemoveAt(rngNum);
                     card.Image = Image.FromFile(@"./imgs/back.png");
@@ -213,7 +219,7 @@ namespace Memory_Project
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            foreach(PictureBox pic in Game_Screen.Controls)
+            foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
             {
                 if (pic.Image != null)
                 {
