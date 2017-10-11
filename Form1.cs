@@ -16,6 +16,8 @@ namespace Memory_Project
 
         Form Game_Screen = new Form();
 
+        Button Reset_Button = new Button();
+
         Random rng = new Random();
 
         List<Image> icons = new List<Image>();
@@ -78,27 +80,72 @@ namespace Memory_Project
         private void Start_Button_Click(object sender, EventArgs e)
         {
             Start_Button.Enabled = false;
+            Reset_Button.Enabled = false;
 
             Game_Screen.Text = "Memory Game";
             Game_Screen.Icon = this.Icon;
             Game_Screen.StartPosition = FormStartPosition.CenterScreen;
             Game_Screen.Size = new Size(650, 665);
-            Label scoreLabel = new Label();
-            scoreLabel.Location = new Point(500, 5);
-            scoreLabel.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
-            scoreLabel.Text = "Score: ";
-            Game_Screen.Controls.Add(scoreLabel);
             Game_Screen.Show();
             Game_Screen.FormClosing += new FormClosingEventHandler(Game_Screen_FormClosing);
+
 
             if (GridInit == false)
             {
                 InitGrid();
+                InitUI();
             }
         }
 
+        private void Reset_Button_Click(object sender, EventArgs e)
+        {
+            firstClicked = null;
+            secondClicked = null;
+
+            Game_Screen.Controls.Clear();
+
+            icons.Clear();
+            #region Foto's
+            icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
+            icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
+            icons[0].Tag = "0";
+            icons[1].Tag = "0";
+            icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
+            icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
+            icons[2].Tag = "1";
+            icons[3].Tag = "1";
+            icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
+            icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
+            icons[4].Tag = "2";
+            icons[5].Tag = "2";
+            icons.Add(Image.FromFile(@"./imgs/Orange.png"));
+            icons.Add(Image.FromFile(@"./imgs/Orange.png"));
+            icons[6].Tag = "3";
+            icons[7].Tag = "3";
+            icons.Add(Image.FromFile(@"./imgs/Pink.png"));
+            icons.Add(Image.FromFile(@"./imgs/Pink.png"));
+            icons[8].Tag = "4";
+            icons[9].Tag = "4";
+            icons.Add(Image.FromFile(@"./imgs/Purple.png"));
+            icons.Add(Image.FromFile(@"./imgs/Purple.png"));
+            icons[10].Tag = "5";
+            icons[11].Tag = "5";
+            icons.Add(Image.FromFile(@"./imgs/Red.png"));
+            icons.Add(Image.FromFile(@"./imgs/Red.png"));
+            icons[12].Tag = "6";
+            icons[13].Tag = "6";
+            icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
+            icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
+            icons[14].Tag = "7";
+            icons[15].Tag = "7";
+            #endregion Foto's 
+
+            InitGrid();
+            InitUI();
+        }
         private void Card_Click(object sender, EventArgs e)
         {
+            Reset_Button.Enabled = true;
             PictureBox clickedPic = sender as PictureBox;
             clickedPic.Enabled = false;
             clickedPic.Image = null;
@@ -117,6 +164,7 @@ namespace Memory_Project
                     {
                         pic.Enabled = false;
                     }
+                    Reset_Button.Enabled = false;
                     timer1.Start();
                 }
                 else
@@ -148,7 +196,6 @@ namespace Memory_Project
             }
 
             MessageBox.Show("Je hebt gewonnen!", "Gefeliciteerd");
-            Game_Screen.Close();
             #region Foto's
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
@@ -183,8 +230,6 @@ namespace Memory_Project
             icons[14].Tag = "7";
             icons[15].Tag = "7";
 #endregion Foto's 
-
-            Start_Button.Enabled = true;
         }
         void InitGrid()
         {
@@ -217,8 +262,25 @@ namespace Memory_Project
             }
         }
 
+        void InitUI()
+        {
+            Label scoreLabel = new Label();
+            scoreLabel.Location = new Point(500, 65);
+            scoreLabel.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
+            scoreLabel.Text = "Score: ";
+            Game_Screen.Controls.Add(scoreLabel);
+
+            Reset_Button.Location = new Point(425, 5);
+            Reset_Button.Size = new Size(205, 50);
+            Reset_Button.Text = "Reset";
+            Reset_Button.Font = new Font(FontFamily.GenericSansSerif, 18.0F, FontStyle.Regular);
+            Game_Screen.Controls.Add(Reset_Button);
+            Reset_Button.Click += new EventHandler(this.Reset_Button_Click);
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            Reset_Button.Enabled = true;
+
             foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
             {
                 if (pic.Image != null)
