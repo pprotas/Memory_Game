@@ -300,7 +300,7 @@ namespace Memory_Project
 
         private void GitHub_Link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/pprotas/Memory_Game_Project");
+            System.Diagnostics.Process.Start("https://github.com/pprotas/Memory_Game");
         }
     }
 }
