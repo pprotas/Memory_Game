@@ -32,13 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Start_Screen));
             this.Start_Button = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.GitHub_Link = new System.Windows.Forms.LinkLabel();
+            this.Title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Start_Button
             // 
-            this.Start_Button.Location = new System.Drawing.Point(100, 100);
+            this.Start_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.Start_Button.Location = new System.Drawing.Point(12, 69);
             this.Start_Button.Name = "Start_Button";
-            this.Start_Button.Size = new System.Drawing.Size(90, 50);
+            this.Start_Button.Size = new System.Drawing.Size(180, 100);
             this.Start_Button.TabIndex = 0;
             this.Start_Button.Text = "Start";
             this.Start_Button.UseVisualStyleBackColor = true;
@@ -49,17 +52,41 @@
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // GitHub_Link
+            // 
+            this.GitHub_Link.AutoSize = true;
+            this.GitHub_Link.Location = new System.Drawing.Point(9, 221);
+            this.GitHub_Link.Name = "GitHub_Link";
+            this.GitHub_Link.Size = new System.Drawing.Size(90, 17);
+            this.GitHub_Link.TabIndex = 1;
+            this.GitHub_Link.TabStop = true;
+            this.GitHub_Link.Text = "Onze GitHub";
+            this.GitHub_Link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GitHub_Link_LinkClicked);
+            // 
+            // Title
+            // 
+            this.Title.AutoSize = true;
+            this.Title.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Bold);
+            this.Title.Location = new System.Drawing.Point(22, 19);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(148, 36);
+            this.Title.TabIndex = 2;
+            this.Title.Text = "Memory Game";
+            // 
             // Start_Screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.ClientSize = new System.Drawing.Size(203, 247);
+            this.Controls.Add(this.Title);
+            this.Controls.Add(this.GitHub_Link);
             this.Controls.Add(this.Start_Button);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Start_Screen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Memory Game";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -67,6 +94,8 @@
 
         private System.Windows.Forms.Button Start_Button;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.LinkLabel GitHub_Link;
+        private System.Windows.Forms.Label Title;
     }
 }
 
