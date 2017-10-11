@@ -193,7 +193,6 @@ namespace Memory_Project
                 for(int c = 0; c < 4; c++)
                 {
                     PictureBox card = new PictureBox();
-                    card.BorderStyle = BorderStyle.Fixed3D;
                     int rngNum = rng.Next(icons.Count);
                     card.BackgroundImage = icons[rngNum];
                     icons.RemoveAt(rngNum);

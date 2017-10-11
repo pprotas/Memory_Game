@@ -39,7 +39,7 @@
             // Start_Button
             // 
             this.Start_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Start_Button.Location = new System.Drawing.Point(12, 69);
+            this.Start_Button.Location = new System.Drawing.Point(31, 67);
             this.Start_Button.Name = "Start_Button";
             this.Start_Button.Size = new System.Drawing.Size(180, 100);
             this.Start_Button.TabIndex = 0;
@@ -55,7 +55,7 @@
             // GitHub_Link
             // 
             this.GitHub_Link.AutoSize = true;
-            this.GitHub_Link.Location = new System.Drawing.Point(9, 221);
+            this.GitHub_Link.Location = new System.Drawing.Point(9, 212);
             this.GitHub_Link.Name = "GitHub_Link";
             this.GitHub_Link.Size = new System.Drawing.Size(90, 17);
             this.GitHub_Link.TabIndex = 1;
@@ -66,10 +66,10 @@
             // Title
             // 
             this.Title.AutoSize = true;
-            this.Title.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Bold);
-            this.Title.Location = new System.Drawing.Point(22, 19);
+            this.Title.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.Location = new System.Drawing.Point(23, 24);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(148, 36);
+            this.Title.Size = new System.Drawing.Size(188, 30);
             this.Title.TabIndex = 2;
             this.Title.Text = "Memory Game";
             // 
@@ -77,14 +77,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(203, 247);
+            this.ClientSize = new System.Drawing.Size(239, 238);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.GitHub_Link);
             this.Controls.Add(this.Start_Button);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Start_Screen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Memory Game";
             this.ResumeLayout(false);
             this.PerformLayout();
 
