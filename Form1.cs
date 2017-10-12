@@ -384,7 +384,7 @@ namespace Memory_Project
             spelersLabel.Location = new Point(425, 225);
             spelersLabel.Size = new Size(300, 30);
             spelersLabel.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
-            spelersLabel.Text = "Speler 1 is aan de beurt.";
+            spelersLabel.Text = playerOne.Text + " is aan de beurt.";
             Game_Screen.Controls.Add(spelersLabel);
         }
 
@@ -418,10 +418,10 @@ namespace Memory_Project
             switch (res)
             {
                 case 1:
-                    spelersLabel.Text = "Speler 1 is aan de beurt.";
+                    spelersLabel.Text = playerOne.Text + " is aan de beurt.";
                     break;
                 case 0:
-                    spelersLabel.Text = "Speler 2 is aan de beurt.";
+                    spelersLabel.Text = playerTwo.Text + " is aan de beurt.";
                     break;
             }
         }
