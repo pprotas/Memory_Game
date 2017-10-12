@@ -13,6 +13,10 @@ namespace Memory_Project
     public partial class Start_Screen : Form
     {
         // Variabelen
+        int res, beurt = 1;
+
+        Label spelersLabel = new Label();
+
         bool GridInit = false; // Wordt gebruikt om te kijken of de 4x4 grid al is aangemaakt => zie InitGrid()
 
         Form Name_Screen = new Form(); // Het scherm waarin je de namen invoert
@@ -164,6 +168,8 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void Reset_Button_Click(object sender, EventArgs e)
         {
+            beurt = 1;
+            Reset_Button.Enabled = false;
             // Reset de mogelijk aangeklikte knoppen om bugs te voorkomen
             firstClicked = null;
             secondClicked = null;
@@ -374,6 +380,12 @@ namespace Memory_Project
             Reset_Button.Font = new Font(FontFamily.GenericSansSerif, 18.0F, FontStyle.Regular);
             Game_Screen.Controls.Add(Reset_Button);
             Reset_Button.Click += new EventHandler(this.Reset_Button_Click);
+
+            spelersLabel.Location = new Point(425, 225);
+            spelersLabel.Size = new Size(300, 30);
+            spelersLabel.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
+            spelersLabel.Text = "Speler 1 is aan de beurt.";
+            Game_Screen.Controls.Add(spelersLabel);
         }
 
         /// <summary>
@@ -401,6 +413,17 @@ namespace Memory_Project
             firstClicked = null;
             secondClicked.Enabled = true;
             secondClicked = null;
+            beurt++;
+            res = beurt % 2;
+            switch (res)
+            {
+                case 1:
+                    spelersLabel.Text = "Speler 1 is aan de beurt.";
+                    break;
+                case 0:
+                    spelersLabel.Text = "Speler 2 is aan de beurt.";
+                    break;
+            }
         }
 
         /// <summary>
