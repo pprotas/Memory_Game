@@ -282,7 +282,7 @@ namespace Memory_Project
                         case 1:
                             score2Label.Text = Convert.ToString(Convert.ToInt32(score2Label.Text) + 50);
                             break;
-                        case 2:
+                        case 0:
                             score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) + 50);
                             break;
                     }
