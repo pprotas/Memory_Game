@@ -271,16 +271,17 @@ namespace Memory_Project
                         if(pic.Image == null)
                         {
                             pic.Enabled = false;
-                            switch (res)
-                            {
-                                case 1:
-                                    score2Label.Text = Convert.ToString(Convert.ToInt32(score2Label.Text) + 50);
-                                    break;
-                                case 2:
-                                    score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) + 50);
-                                    break;
-                            }
                         }
+
+                    }
+                    switch (res)
+                    {
+                        case 1:
+                            score2Label.Text = Convert.ToString(Convert.ToInt32(score2Label.Text) + 50);
+                            break;
+                        case 2:
+                            score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) + 50);
+                            break;
                     }
                     CheckWinner();
                     firstClicked = null;
@@ -383,27 +384,33 @@ namespace Memory_Project
         {
             Label scoreLabel = new Label();
             scoreLabel.Location = new Point(425, 65);
-            scoreLabel.Size = new Size(175, 30);
+            scoreLabel.Size = new Size(125, 30);
             scoreLabel.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
             scoreLabel.Text = "Score " + playerOne.Text + ": ";
             Game_Screen.Controls.Add(scoreLabel);
 
-            score2Label.Location = new Point(600, 65);
+            score2Label.Location = new Point(550, 65);
             score2Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
             score2Label.Text = "100";
             Game_Screen.Controls.Add(score2Label);
 
             Label score3Label = new Label();
             score3Label.Location = new Point(425, 125);
-            score3Label.Size = new Size(175, 30);
+            score3Label.Size = new Size(125, 30);
             score3Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
             score3Label.Text = "Score " + playerTwo.Text + ": ";
             Game_Screen.Controls.Add(score3Label);
 
-            score4Label.Location = new Point(600, 125);
+            score4Label.Location = new Point(550, 125);
             score4Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
             score4Label.Text = "100";
             Game_Screen.Controls.Add(score4Label);
+
+            if (playerTwo.Text == "Speler 2")
+            {
+                score3Label.Hide();
+                score4Label.Hide();
+            }
 
             Reset_Button.Location = new Point(425, 5);
             Reset_Button.Size = new Size(205, 50);
