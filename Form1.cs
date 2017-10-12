@@ -400,7 +400,7 @@ namespace Memory_Project
         {
             Label scoreLabel = new Label();
             scoreLabel.Location = new Point(425, 65);
-            scoreLabel.Size = new Size(125, 30);
+            scoreLabel.Size = new Size(150, 30);
             scoreLabel.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
             scoreLabel.Text = "Score " + playerOne.Text + ": ";
             Game_Screen.Controls.Add(scoreLabel);
@@ -412,7 +412,7 @@ namespace Memory_Project
 
             Label score3Label = new Label();
             score3Label.Location = new Point(425, 125);
-            score3Label.Size = new Size(125, 30);
+            score3Label.Size = new Size(150, 30);
             score3Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
             score3Label.Text = "Score " + playerTwo.Text + ": ";
             Game_Screen.Controls.Add(score3Label);
@@ -422,7 +422,7 @@ namespace Memory_Project
             score4Label.Text = "100";
             Game_Screen.Controls.Add(score4Label);
 
-            if (playerTwo.Text == "Speler 2")
+            if (playerTwo.Text == "")
             {
                 score3Label.Hide();
                 score4Label.Hide();
@@ -477,7 +477,7 @@ namespace Memory_Project
                     score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) - 10);
                     break;
             }
-            if (playerTwo.Text != "Speler 2")
+            if (playerTwo.Text != "")
             {
                 beurt++;
             }
