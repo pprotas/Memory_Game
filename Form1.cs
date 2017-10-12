@@ -306,7 +306,18 @@ namespace Memory_Project
             }
 
             // De messagebox die wordt weergegeven als de gebruiker wint 
-            MessageBox.Show("Je hebt gewonnen!", "Gefeliciteerd");
+            if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(score4Label.Text))
+            {
+                MessageBox.Show(playerOne.Text + " heeft gewonnen met een score van " + score2Label.Text + "!", "Gefeliciteerd");
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(score2Label.Text))
+            {
+                MessageBox.Show(playerTwo.Text + " heeft gewonnen met een score van " + score4Label.Text + "!", "Gefeliciteerd");
+            }
+            else
+            {
+                MessageBox.Show("Gelijkspel met scores van " + score2Label.Text + "!");
+            }
             #region Foto's
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
