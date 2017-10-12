@@ -13,7 +13,7 @@ namespace Memory_Project
     public partial class Start_Screen : Form
     {
         // Variabelen
-        int res, beurt = 1;
+        int res = 1, beurt = 1;
 
         Label spelersLabel = new Label();
 
