@@ -405,7 +405,7 @@ namespace Memory_Project
             scoreLabel.Text = "Score " + playerOne.Text + ": ";
             Game_Screen.Controls.Add(scoreLabel);
 
-            score2Label.Location = new Point(550, 65);
+            score2Label.Location = new Point(575, 65);
             score2Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
             score2Label.Text = "100";
             Game_Screen.Controls.Add(score2Label);
@@ -417,7 +417,7 @@ namespace Memory_Project
             score3Label.Text = "Score " + playerTwo.Text + ": ";
             Game_Screen.Controls.Add(score3Label);
 
-            score4Label.Location = new Point(550, 125);
+            score4Label.Location = new Point(575, 125);
             score4Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
             score4Label.Text = "100";
             Game_Screen.Controls.Add(score4Label);
