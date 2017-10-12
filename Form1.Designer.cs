@@ -39,7 +39,7 @@
             // Start_Button
             // 
             this.Start_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Start_Button.Location = new System.Drawing.Point(31, 67);
+            this.Start_Button.Location = new System.Drawing.Point(32, 65);
             this.Start_Button.Name = "Start_Button";
             this.Start_Button.Size = new System.Drawing.Size(180, 100);
             this.Start_Button.TabIndex = 0;
@@ -67,7 +67,7 @@
             // 
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(23, 24);
+            this.Title.Location = new System.Drawing.Point(20, 25);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(188, 30);
             this.Title.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(239, 238);
+            this.ClientSize = new System.Drawing.Size(242, 238);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.GitHub_Link);
             this.Controls.Add(this.Start_Button);

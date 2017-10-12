@@ -15,7 +15,11 @@ namespace Memory_Project
         // Variabelen
         bool GridInit = false; // Wordt gebruikt om te kijken of de 4x4 grid al is aangemaakt => zie InitGrid()
 
+        Form Name_Screen = new Form(); // Het scherm waarin je de namen invoert
         Form Game_Screen = new Form(); // Het scherm waarin het spel wordt gespeeld
+
+        TextBox playerOne = new TextBox();
+        TextBox playerTwo = new TextBox();
 
         Button Reset_Button = new Button(); // Reset knop die de grid reset => zie Reset_Button_Click
 
@@ -95,7 +99,46 @@ namespace Memory_Project
         private void Start_Button_Click(object sender, EventArgs e)
         {
             // Zet de Star button uit om bugs te voorkomen (deze worden later weer aangezet)
-            Start_Button.Enabled = false; 
+            Start_Button.Enabled = false;
+
+            Name_Screen.Icon = this.Icon;
+            Name_Screen.StartPosition = FormStartPosition.CenterScreen;
+            Name_Screen.Size = this.Size;
+            Name_Screen.Show();
+
+            Button OK_Button = new Button();
+            OK_Button.Location = new Point(25, 95);
+            OK_Button.Size = Start_Button.Size;
+            OK_Button.Font = Start_Button.Font;
+            OK_Button.Text = "OK";
+            Name_Screen.Controls.Add(OK_Button);
+            OK_Button.Click += new EventHandler(this.OK_Button_Click);
+
+            playerOne.Location = new Point(40, 20);
+            Name_Screen.Controls.Add(playerOne);
+
+            Label playerOneLabel = new Label();
+            playerOneLabel.Location = new Point(55, 5);
+            playerOneLabel.Text = "Speler 1 naam: ";
+            Name_Screen.Controls.Add(playerOneLabel);
+       
+            playerTwo.Location = new Point(40, 70);
+            Name_Screen.Controls.Add(playerTwo);
+
+            Label playerTwoLabel = new Label();
+            playerTwoLabel.Location = new Point(55, 55);
+            playerTwoLabel.Text = "Speler 2 naam: ";
+            Name_Screen.Controls.Add(playerTwoLabel);
+        }
+
+        /// <summary>
+        /// Wat er gebeurt tijdens de klik op de OK_Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OK_Button_Click(object sender, EventArgs e)
+        {
+            Name_Screen.Hide();
 
             // Initialiseert het game venster
             Game_Screen.Text = "Memory Game";
