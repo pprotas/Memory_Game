@@ -272,7 +272,11 @@ namespace Memory_Project
                             pic.Enabled = false;
                         }
                     }
+                    Reset_Button.Enabled = false;
+                   
                     CheckWinner();
+                    Game_Screen.Controls.Remove(firstClicked);
+                    Game_Screen.Controls.Remove(secondClicked);
                     firstClicked = null;
                     secondClicked = null;
                     return;
