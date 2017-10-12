@@ -44,6 +44,9 @@ namespace Memory_Project
 
             this.CenterToScreen();
 
+            playerOne.Text = "Speler 1";
+            playerTwo.Text = "Speler 2";
+
             #region Foto's
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
