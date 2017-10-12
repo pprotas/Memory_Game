@@ -17,6 +17,10 @@ namespace Memory_Project
 
         Label spelersLabel = new Label();
 
+        Label score2Label = new Label();
+
+        Label score4Label = new Label();
+
         bool GridInit = false; // Wordt gebruikt om te kijken of de 4x4 grid al is aangemaakt => zie InitGrid()
 
         Form Name_Screen = new Form(); // Het scherm waarin je de namen invoert
@@ -271,6 +275,16 @@ namespace Memory_Project
                         {
                             pic.Enabled = false;
                         }
+
+                    }
+                    switch (res)
+                    {
+                        case 1:
+                            score2Label.Text = Convert.ToString(Convert.ToInt32(score2Label.Text) + 50);
+                            break;
+                        case 2:
+                            score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) + 50);
+                            break;
                     }
                     Reset_Button.Enabled = false;
                    
@@ -376,10 +390,34 @@ namespace Memory_Project
         void InitUI()
         {
             Label scoreLabel = new Label();
-            scoreLabel.Location = new Point(500, 65);
+            scoreLabel.Location = new Point(425, 65);
+            scoreLabel.Size = new Size(125, 30);
             scoreLabel.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
-            scoreLabel.Text = "Score: ";
+            scoreLabel.Text = "Score " + playerOne.Text + ": ";
             Game_Screen.Controls.Add(scoreLabel);
+
+            score2Label.Location = new Point(550, 65);
+            score2Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
+            score2Label.Text = "100";
+            Game_Screen.Controls.Add(score2Label);
+
+            Label score3Label = new Label();
+            score3Label.Location = new Point(425, 125);
+            score3Label.Size = new Size(125, 30);
+            score3Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
+            score3Label.Text = "Score " + playerTwo.Text + ": ";
+            Game_Screen.Controls.Add(score3Label);
+
+            score4Label.Location = new Point(550, 125);
+            score4Label.Font = new Font(FontFamily.GenericSansSerif, 12.0F, FontStyle.Bold);
+            score4Label.Text = "100";
+            Game_Screen.Controls.Add(score4Label);
+
+            if (playerTwo.Text == "Speler 2")
+            {
+                score3Label.Hide();
+                score4Label.Hide();
+            }
 
             Reset_Button.Location = new Point(425, 5);
             Reset_Button.Size = new Size(205, 50);
@@ -420,7 +458,20 @@ namespace Memory_Project
             firstClicked = null;
             secondClicked.Enabled = true;
             secondClicked = null;
-            beurt++;
+            res = beurt % 2;
+            switch (res)
+            {
+                case 1:
+                    score2Label.Text = Convert.ToString(Convert.ToInt32(score2Label.Text) - 10);
+                    break;
+                case 0:
+                    score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) - 10);
+                    break;
+            }
+            if (playerTwo.Text != "Speler 2")
+            {
+                beurt++;
+            }
             res = beurt % 2;
             switch (res)
             {
