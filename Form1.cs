@@ -286,8 +286,6 @@ namespace Memory_Project
                             score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) + 50);
                             break;
                     }
-                    Reset_Button.Enabled = false;
-                   
                     CheckWinner();
                     Game_Screen.Controls.Remove(firstClicked);
                     Game_Screen.Controls.Remove(secondClicked);
