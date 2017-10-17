@@ -12,22 +12,28 @@ namespace Memory_Project
 {
     public partial class Start_Screen : Form
     {
-        // Variabelen
-        int res = 1, beurt = 1;
-
+        // De onderstaande variabelen moeten worden opgeslagen
+        // Welke speler aan de beurt is
         Label spelersLabel = new Label();
-
+        // De scores van Speler 1 en Speler 2
         Label score2Label = new Label();
-
         Label score4Label = new Label();
+
+        // Namen van de spelers
+        public TextBox playerOne = new TextBox();
+        TextBox playerTwo = new TextBox();
+
+        // Onthoudt welke kaart welk plaatje heeft door middel van Tag
+        string[] location = new string[16];
+
+
+        // Overige variabelen
+        int res = 1, beurt = 1;
 
         bool GridInit = false; // Wordt gebruikt om te kijken of de 4x4 grid al is aangemaakt => zie InitGrid()
 
         Form Name_Screen = new Form(); // Het scherm waarin je de namen invoert
-        Form Game_Screen = new Form(); // Het scherm waarin het spel wordt gespeeld
-
-        TextBox playerOne = new TextBox();
-        TextBox playerTwo = new TextBox();
+        Form Game_Screen = new Form(); // Het scherm waarin het spel wordt gespeeld    
 
         Button Reset_Button = new Button(); // Reset knop die de grid reset => zie Reset_Button_Click
 
@@ -94,6 +100,7 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void Game_Screen_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 Start_Button.Enabled = true;
@@ -109,7 +116,7 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void Start_Button_Click(object sender, EventArgs e)
         {
-            // Zet de Star button uit om bugs te voorkomen (deze worden later weer aangezet)
+            // Zet de Start button uit om bugs te voorkomen (deze worden later weer aangezet)
             Start_Button.Enabled = false;
 
             Name_Screen.Icon = this.Icon;
@@ -132,7 +139,7 @@ namespace Memory_Project
             playerOneLabel.Location = new Point(55, 5);
             playerOneLabel.Text = "Speler 1 naam: ";
             Name_Screen.Controls.Add(playerOneLabel);
-       
+
             playerTwo.Location = new Point(40, 70);
             Name_Screen.Controls.Add(playerTwo);
 
@@ -243,21 +250,21 @@ namespace Memory_Project
             // Maakt het voorgrond plaatje onzichtbaar zodat de BackgroundImage te zien is
             clickedPic.Image = null;
             // Als dit de eerste plaatje is die wordt aangeklikt = firstClicked, zo niet = er gebeurt niks
-            if(firstClicked == null)
+            if (firstClicked == null)
             {
                 firstClicked = clickedPic;
                 return;
             }
 
             // Als firstClicked al bestaat en secondClicked niet = secondClicked wordt het 2e aangeklikte plaatje
-            if(firstClicked != null && secondClicked == null)
+            if (firstClicked != null && secondClicked == null)
             {
                 secondClicked = clickedPic;
 
                 // Als de plaatjes NIET hetzelfde zijn = zet het voorgrond plaatje weer aan => zie timer1_Tick
                 if (firstClicked.BackgroundImage.Tag != secondClicked.BackgroundImage.Tag)
                 {
-                    foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+                    foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
                     {
                         pic.Enabled = false;
                     }
@@ -269,9 +276,9 @@ namespace Memory_Project
                 // => zie CheckWinner()
                 else
                 {
-                    foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+                    foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
                     {
-                        if(pic.Image == null)
+                        if (pic.Image == null)
                         {
                             pic.Enabled = false;
                         }
@@ -294,7 +301,7 @@ namespace Memory_Project
                     return;
                 }
                 return;
-            }   
+            }
         }
 
         /// <summary>
@@ -302,9 +309,9 @@ namespace Memory_Project
         /// </summary>
         void CheckWinner()
         {
-            foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+            foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
             {
-                if(pic.Image != null)
+                if (pic.Image != null)
                 {
                     return;
                 }
@@ -356,7 +363,7 @@ namespace Memory_Project
             icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
             icons[14].Tag = "7";
             icons[15].Tag = "7";
-#endregion Foto's 
+            #endregion Foto's 
         }
 
         /// <summary>
@@ -368,15 +375,17 @@ namespace Memory_Project
 
             int x = 5;
             int y = 5;
+            int i = 0;
 
-            for(int r = 0; r < 4; r++)
+            for (int r = 0; r < 4; r++)
             {
-                for(int c = 0; c < 4; c++)
+                for (int c = 0; c < 4; c++)
                 {
                     PictureBox card = new PictureBox();
                     int rngNum = rng.Next(icons.Count);
                     card.BorderStyle = BorderStyle.Fixed3D;
                     card.BackgroundImage = icons[rngNum];
+                    location[i] = icons[rngNum].Tag.ToString();
                     icons.RemoveAt(rngNum);
                     card.Image = Image.FromFile(@"./imgs/back.png");
                     card.Size = new Size(104, 154);
@@ -387,10 +396,16 @@ namespace Memory_Project
                     Game_Screen.Controls.Add(card);
 
                     x += 105;
+
+                    i++;
                 }
                 x = 5;
                 y += 155;
             }
+            Label testLabel = new Label();
+            testLabel.Location = new Point(640, 640);
+            testLabel.Text = location[0];
+            Game_Screen.Controls.Add(testLabel);
         }
 
         /// <summary>
@@ -452,7 +467,7 @@ namespace Memory_Project
         {
             Reset_Button.Enabled = true;
 
-            foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+            foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
             {
                 if (pic.Image != null)
                 {
