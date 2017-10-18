@@ -633,8 +633,7 @@ namespace Memory_Project
 
                         if (lines[l] == "")
                         {
-                            card.Enabled = false;
-                            card.Hide();
+                            Game_Screen.Controls.Remove(card);
                         }
 
                         x += 105;
