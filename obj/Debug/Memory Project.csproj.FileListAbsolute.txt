@@ -26,3 +26,4 @@ C:\Users\Startklaar\Project\obj\Debug\Memory Project.csproj.GenerateResource.Cac
 C:\Users\Startklaar\Project\obj\Debug\Memory Project.csproj.CoreCompileInputs.cache
 C:\Users\Startklaar\Project\obj\Debug\Memory Project test.exe
 C:\Users\Startklaar\Project\obj\Debug\Memory Project test.pdb
+C:\Users\pawpr\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory Project\obj\Debug\Memory Project.csproj.CoreCompileInputs.cache

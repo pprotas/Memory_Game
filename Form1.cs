@@ -7,25 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace Memory_Project
 {
     public partial class Start_Screen : Form
     {
         // De onderstaande variabelen moeten worden opgeslagen
         // Welke speler aan de beurt is
-        Label spelersLabel = new Label();
+        public Label spelersLabel = new Label();
         // De scores van Speler 1 en Speler 2
-        Label score2Label = new Label();
-        Label score4Label = new Label();
+        public Label score2Label = new Label();
+        public Label score4Label = new Label();
 
         // Namen van de spelers
         public TextBox playerOne = new TextBox();
-        TextBox playerTwo = new TextBox();
+        public TextBox playerTwo = new TextBox();
 
         // Onthoudt welke kaart welk plaatje heeft door middel van Tag
-        string[] location = new string[16];
-
+        public string[] location = new string[16];
 
         // Overige variabelen
         int res = 1, beurt = 1;
@@ -100,7 +99,7 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void Game_Screen_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            File.WriteAllText(@"C:\Users\pawpr\Desktop\memory.sav", string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n{11}\n{12}\n{13}\n{14}\n{15}\n{16}\n{17}\n{18}\n{19}\n{20}", spelersLabel.Text, score2Label.Text, score4Label.Text, playerOne.Text, playerTwo.Text, location[0], location[1], location[2], location[3], location[4], location[5], location[6], location[7], location[8], location[9], location[10], location[11], location[12], location[13], location[14], location[15]));
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 Start_Button.Enabled = true;
