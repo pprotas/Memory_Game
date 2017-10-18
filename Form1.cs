@@ -285,8 +285,15 @@ namespace Memory_Project
                         {
                             pic.Enabled = false;
                         }
-
                     }
+                    for(int i = 0; i < 16; i++)
+                    {
+                        if(location[i]==Convert.ToString(firstClicked.BackgroundImage.Tag))
+                        {
+                            location[i] = "";
+                        }
+                    }
+                    res = beurt % 2;
                     switch (res)
                     {
                         case 1:
@@ -526,113 +533,123 @@ namespace Memory_Project
             playerOne.Text = lines[3];
             playerTwo.Text = lines[4];
 
-            InitUI();
-
-            spelersLabel.Text = lines[0];
-            score2Label.Text = lines[1];
-            score4Label.Text = lines[2];
-            beurt = Convert.ToInt32(lines[21]);
-
-            int x = 5;
-            int y = 5;
-            int i = 0;
-            int l = 5;
-            #region Foto's
-            icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
-            icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
-            icons[0].Tag = "0";
-            icons[1].Tag = "0";
-            icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
-            icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
-            icons[2].Tag = "1";
-            icons[3].Tag = "1";
-            icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
-            icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
-            icons[4].Tag = "2";
-            icons[5].Tag = "2";
-            icons.Add(Image.FromFile(@"./imgs/Orange.png"));
-            icons.Add(Image.FromFile(@"./imgs/Orange.png"));
-            icons[6].Tag = "3";
-            icons[7].Tag = "3";
-            icons.Add(Image.FromFile(@"./imgs/Pink.png"));
-            icons.Add(Image.FromFile(@"./imgs/Pink.png"));
-            icons[8].Tag = "4";
-            icons[9].Tag = "4";
-            icons.Add(Image.FromFile(@"./imgs/Purple.png"));
-            icons.Add(Image.FromFile(@"./imgs/Purple.png"));
-            icons[10].Tag = "5";
-            icons[11].Tag = "5";
-            icons.Add(Image.FromFile(@"./imgs/Red.png"));
-            icons.Add(Image.FromFile(@"./imgs/Red.png"));
-            icons[12].Tag = "6";
-            icons[13].Tag = "6";
-            icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
-            icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
-            icons[14].Tag = "7";
-            icons[15].Tag = "7";
-            #endregion Foto's 
-            for (int r = 0; r < 4; r++)
+            if (GridInit == false)
             {
-                for (int c = 0; c < 4; c++)
+                GridInit = true;
+
+                InitUI();
+
+                spelersLabel.Text = lines[0];
+                score2Label.Text = lines[1];
+                score4Label.Text = lines[2];
+                beurt = Convert.ToInt32(lines[21]);
+
+                int x = 5;
+                int y = 5;
+                int i = 0;
+                int l = 5;
+                #region Foto's
+                icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
+                icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
+                icons[0].Tag = "0";
+                icons[1].Tag = "0";
+                icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
+                icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
+                icons[2].Tag = "1";
+                icons[3].Tag = "1";
+                icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
+                icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
+                icons[4].Tag = "2";
+                icons[5].Tag = "2";
+                icons.Add(Image.FromFile(@"./imgs/Orange.png"));
+                icons.Add(Image.FromFile(@"./imgs/Orange.png"));
+                icons[6].Tag = "3";
+                icons[7].Tag = "3";
+                icons.Add(Image.FromFile(@"./imgs/Pink.png"));
+                icons.Add(Image.FromFile(@"./imgs/Pink.png"));
+                icons[8].Tag = "4";
+                icons[9].Tag = "4";
+                icons.Add(Image.FromFile(@"./imgs/Purple.png"));
+                icons.Add(Image.FromFile(@"./imgs/Purple.png"));
+                icons[10].Tag = "5";
+                icons[11].Tag = "5";
+                icons.Add(Image.FromFile(@"./imgs/Red.png"));
+                icons.Add(Image.FromFile(@"./imgs/Red.png"));
+                icons[12].Tag = "6";
+                icons[13].Tag = "6";
+                icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
+                icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
+                icons[14].Tag = "7";
+                icons[15].Tag = "7";
+                #endregion Foto's 
+                for (int r = 0; r < 4; r++)
                 {
-                    PictureBox card = new PictureBox();
-                    card.BorderStyle = BorderStyle.Fixed3D;
-                    switch(Convert.ToInt32(lines[l]))
+                    for (int c = 0; c < 4; c++)
                     {
-                        case 0:
-                            card.BackgroundImage = icons[0];
-                            location[i] = 0.ToString();
-                            break;
-                        case 1:
-                            card.BackgroundImage = icons[2];
-                            location[i] = 1.ToString();
-                            break;
-                        case 2:
-                            card.BackgroundImage = icons[4];
-                            location[i] = 2.ToString();
-                            break;
-                        case 3:
-                            card.BackgroundImage = icons[6];
-                            location[i] = 3.ToString();
-                            break;
-                        case 4:
-                            card.BackgroundImage = icons[8];
-                            location[i] = 4.ToString();
-                            break;
-                        case 5:
-                            card.BackgroundImage = icons[10];
-                            location[i] = 5.ToString();
-                            break;
-                        case 6:
-                            card.BackgroundImage = icons[12];
-                            location[i] = 6.ToString();
-                            break;
-                        case 7:
-                            card.BackgroundImage = icons[14];
-                            location[i] = 7.ToString();
-                            break;
+                        PictureBox card = new PictureBox();
+                        card.BorderStyle = BorderStyle.Fixed3D;
+                        switch (lines[l])
+                        {
+                            case "0":
+                                card.BackgroundImage = icons[0];
+                                location[i] = 0.ToString();
+                                break;
+                            case "1":
+                                card.BackgroundImage = icons[2];
+                                location[i] = 1.ToString();
+                                break;
+                            case "2":
+                                card.BackgroundImage = icons[4];
+                                location[i] = 2.ToString();
+                                break;
+                            case "3":
+                                card.BackgroundImage = icons[6];
+                                location[i] = 3.ToString();
+                                break;
+                            case "4":
+                                card.BackgroundImage = icons[8];
+                                location[i] = 4.ToString();
+                                break;
+                            case "5":
+                                card.BackgroundImage = icons[10];
+                                location[i] = 5.ToString();
+                                break;
+                            case "6":
+                                card.BackgroundImage = icons[12];
+                                location[i] = 6.ToString();
+                                break;
+                            case "7":
+                                card.BackgroundImage = icons[14];
+                                location[i] = 7.ToString();
+                                break;
+                        }
+                        card.Image = Image.FromFile(@"./imgs/back.png");
+                        card.Size = new Size(104, 154);
+                        card.Location = new Point(x, y);
+                        card.Cursor = Cursors.Hand;
+                        card.Click += new EventHandler(this.Card_Click);
 
+                        Game_Screen.Controls.Add(card);
+
+                        if (lines[l] == "")
+                        {
+                            card.Enabled = false;
+                            card.Hide();
+                        }
+
+                        x += 105;
+
+                        i++;
+                        l++;
                     }
-                    card.Image = Image.FromFile(@"./imgs/back.png");
-                    card.Size = new Size(104, 154);
-                    card.Location = new Point(x, y);
-                    card.Cursor = Cursors.Hand;
-                    card.Click += new EventHandler(this.Card_Click);
-
-                    Game_Screen.Controls.Add(card);
-
-                    x += 105;
-
-                    i++;
-                    l++;
+                    x = 5;
+                    y += 155;
                 }
-                x = 5;
-                y += 155;
+                Label testLabel = new Label();
+                testLabel.Location = new Point(640, 640);
+                testLabel.Text = location[0];
+                Game_Screen.Controls.Add(testLabel);
             }
-            Label testLabel = new Label();
-            testLabel.Location = new Point(640, 640);
-            testLabel.Text = location[0];
-            Game_Screen.Controls.Add(testLabel);
         }
 
         /// <summary>
