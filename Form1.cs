@@ -110,6 +110,16 @@ namespace Memory_Project
             }
         }
 
+        private void Name_Screen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Start_Button.Enabled = true;
+                e.Cancel = true;
+                Name_Screen.Hide();
+            }
+        }
+
         /// <summary>
         /// Wat er gebeurt tijdens de klik op de Start_Button
         /// </summary>
@@ -128,6 +138,7 @@ namespace Memory_Project
             if (NameScreen == false)
             {
                 NameScreen = true;
+                Name_Screen.FormClosing += new FormClosingEventHandler(Name_Screen_FormClosing);
                 Button OK_Button = new Button();
                 OK_Button.Location = new Point(17, 95);
                 OK_Button.Size = Start_Button.Size;
