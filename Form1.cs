@@ -129,7 +129,8 @@ namespace Memory_Project
         {
             // Zet de Start button uit om bugs te voorkomen (deze worden later weer aangezet)
             Start_Button.Enabled = false;
-            Name_Screen.Icon = this.Icon;
+            Name_Screen.ShowIcon = false;
+            Name_Screen.MaximizeBox = false;
             Name_Screen.StartPosition = FormStartPosition.CenterScreen;
             Name_Screen.Size = new Size(200, 200);
             Name_Screen.Show();
@@ -176,6 +177,7 @@ namespace Memory_Project
 
             // Initialiseert het game venster
             Game_Screen.Text = "Memory Game";
+            Game_Screen.MaximizeBox = false;
             Game_Screen.Icon = this.Icon;
             Game_Screen.StartPosition = FormStartPosition.CenterScreen;
             Game_Screen.Size = new Size(650, 665);
@@ -537,6 +539,7 @@ namespace Memory_Project
             string[] lines = File.ReadAllLines(@"./memory.sav");
 
             Game_Screen.Text = "Memory Game";
+            Game_Screen.MaximizeBox = false;
             Game_Screen.Icon = this.Icon;
             Game_Screen.StartPosition = FormStartPosition.CenterScreen;
             Game_Screen.Size = new Size(650, 665);
@@ -672,6 +675,7 @@ namespace Memory_Project
             Highscore_Screen.FormClosing += new FormClosingEventHandler(Highscore_Screen_FormClosing);
 
             Highscore_Screen.StartPosition = FormStartPosition.CenterScreen;
+            Highscore_Screen.MaximizeBox = false;
             Highscore_Screen.Size = new Size(650, 600);
             Highscore_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
             Highscore_Screen.Icon = this.Icon;
