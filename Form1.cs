@@ -7,27 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace Memory_Project
 {
     public partial class Start_Screen : Form
     {
-        // Variabelen
-        int res = 1, beurt = 1;
+        // De onderstaande variabelen moeten worden opgeslagen
+        // Welke speler aan de beurt is
+        public Label spelersLabel = new Label();
+        // De scores van Speler 1 en Speler 2
+        public Label score2Label = new Label();
+        public Label score4Label = new Label();
 
-        Label spelersLabel = new Label();
+        // Namen van de spelers
+        public TextBox playerOne = new TextBox();
+        public TextBox playerTwo = new TextBox();
 
-        Label score2Label = new Label();
+        // Onthoudt welke kaart welk plaatje heeft door middel van Tag
+        public string[] location = new string[16];
 
-        Label score4Label = new Label();
+        // Overige variabelen
+        int res, beurt = 1;
 
         bool GridInit = false; // Wordt gebruikt om te kijken of de 4x4 grid al is aangemaakt => zie InitGrid()
+        bool NameScreen = false;
 
         Form Name_Screen = new Form(); // Het scherm waarin je de namen invoert
-        Form Game_Screen = new Form(); // Het scherm waarin het spel wordt gespeeld
-
-        TextBox playerOne = new TextBox();
-        TextBox playerTwo = new TextBox();
+        Form Game_Screen = new Form(); // Het scherm waarin het spel wordt gespeeld    
+        Form Highscore_Screen = new Form(); // Het scherm waarin de highscores worden weergegeven
 
         Button Reset_Button = new Button(); // Reset knop die de grid reset => zie Reset_Button_Click
 
@@ -94,6 +101,7 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void Game_Screen_FormClosing(object sender, FormClosingEventArgs e)
         {
+            File.WriteAllText(@"./memory.sav", string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n{11}\n{12}\n{13}\n{14}\n{15}\n{16}\n{17}\n{18}\n{19}\n{20}\n{21}", spelersLabel.Text, score2Label.Text, score4Label.Text, playerOne.Text, playerTwo.Text, location[0], location[1], location[2], location[3], location[4], location[5], location[6], location[7], location[8], location[9], location[10], location[11], location[12], location[13], location[14], location[15], beurt));
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 Start_Button.Enabled = true;
@@ -109,37 +117,41 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void Start_Button_Click(object sender, EventArgs e)
         {
-            // Zet de Star button uit om bugs te voorkomen (deze worden later weer aangezet)
+            // Zet de Start button uit om bugs te voorkomen (deze worden later weer aangezet)
             Start_Button.Enabled = false;
-
             Name_Screen.Icon = this.Icon;
             Name_Screen.StartPosition = FormStartPosition.CenterScreen;
-            Name_Screen.Size = this.Size;
+            Name_Screen.Size = new Size(200, 200);
             Name_Screen.Show();
+            Name_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
 
-            Button OK_Button = new Button();
-            OK_Button.Location = new Point(25, 95);
-            OK_Button.Size = Start_Button.Size;
-            OK_Button.Font = Start_Button.Font;
-            OK_Button.Text = "OK";
-            Name_Screen.Controls.Add(OK_Button);
-            OK_Button.Click += new EventHandler(this.OK_Button_Click);
+            if (NameScreen == false)
+            {
+                NameScreen = true;
+                Button OK_Button = new Button();
+                OK_Button.Location = new Point(17, 95);
+                OK_Button.Size = Start_Button.Size;
+                OK_Button.Font = Start_Button.Font;
+                OK_Button.Text = "OK";
+                Name_Screen.Controls.Add(OK_Button);
+                OK_Button.Click += new EventHandler(this.OK_Button_Click);
 
-            playerOne.Location = new Point(40, 20);
-            Name_Screen.Controls.Add(playerOne);
+                playerOne.Location = new Point(42, 20);
+                Name_Screen.Controls.Add(playerOne);
 
-            Label playerOneLabel = new Label();
-            playerOneLabel.Location = new Point(55, 5);
-            playerOneLabel.Text = "Speler 1 naam: ";
-            Name_Screen.Controls.Add(playerOneLabel);
-       
-            playerTwo.Location = new Point(40, 70);
-            Name_Screen.Controls.Add(playerTwo);
+                Label playerOneLabel = new Label();
+                playerOneLabel.Location = new Point(55, 5);
+                playerOneLabel.Text = "Speler 1 naam: ";
+                Name_Screen.Controls.Add(playerOneLabel);
 
-            Label playerTwoLabel = new Label();
-            playerTwoLabel.Location = new Point(55, 55);
-            playerTwoLabel.Text = "Speler 2 naam: ";
-            Name_Screen.Controls.Add(playerTwoLabel);
+                playerTwo.Location = new Point(42, 70);
+                Name_Screen.Controls.Add(playerTwo);
+
+                Label playerTwoLabel = new Label();
+                playerTwoLabel.Location = new Point(55, 55);
+                playerTwoLabel.Text = "Speler 2 naam: ";
+                Name_Screen.Controls.Add(playerTwoLabel);
+            }
         }
 
         /// <summary>
@@ -157,6 +169,7 @@ namespace Memory_Project
             Game_Screen.StartPosition = FormStartPosition.CenterScreen;
             Game_Screen.Size = new Size(650, 665);
             Game_Screen.Show();
+            Game_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
             // Maakt de FormClosing event aan
             Game_Screen.FormClosing += new FormClosingEventHandler(Game_Screen_FormClosing);
 
@@ -243,21 +256,21 @@ namespace Memory_Project
             // Maakt het voorgrond plaatje onzichtbaar zodat de BackgroundImage te zien is
             clickedPic.Image = null;
             // Als dit de eerste plaatje is die wordt aangeklikt = firstClicked, zo niet = er gebeurt niks
-            if(firstClicked == null)
+            if (firstClicked == null)
             {
                 firstClicked = clickedPic;
                 return;
             }
 
             // Als firstClicked al bestaat en secondClicked niet = secondClicked wordt het 2e aangeklikte plaatje
-            if(firstClicked != null && secondClicked == null)
+            if (firstClicked != null && secondClicked == null)
             {
                 secondClicked = clickedPic;
 
                 // Als de plaatjes NIET hetzelfde zijn = zet het voorgrond plaatje weer aan => zie timer1_Tick
                 if (firstClicked.BackgroundImage.Tag != secondClicked.BackgroundImage.Tag)
                 {
-                    foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+                    foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
                     {
                         pic.Enabled = false;
                     }
@@ -269,14 +282,21 @@ namespace Memory_Project
                 // => zie CheckWinner()
                 else
                 {
-                    foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+                    foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
                     {
-                        if(pic.Image == null)
+                        if (pic.Image == null)
                         {
                             pic.Enabled = false;
                         }
-
                     }
+                    for(int i = 0; i < 16; i++)
+                    {
+                        if(location[i]==Convert.ToString(firstClicked.BackgroundImage.Tag))
+                        {
+                            location[i] = "";
+                        }
+                    }
+                    res = beurt % 2;
                     switch (res)
                     {
                         case 1:
@@ -294,7 +314,7 @@ namespace Memory_Project
                     return;
                 }
                 return;
-            }   
+            }
         }
 
         /// <summary>
@@ -302,9 +322,9 @@ namespace Memory_Project
         /// </summary>
         void CheckWinner()
         {
-            foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+            foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
             {
-                if(pic.Image != null)
+                if (pic.Image != null)
                 {
                     return;
                 }
@@ -356,7 +376,7 @@ namespace Memory_Project
             icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
             icons[14].Tag = "7";
             icons[15].Tag = "7";
-#endregion Foto's 
+            #endregion Foto's 
         }
 
         /// <summary>
@@ -368,15 +388,17 @@ namespace Memory_Project
 
             int x = 5;
             int y = 5;
+            int i = 0;
 
-            for(int r = 0; r < 4; r++)
+            for (int r = 0; r < 4; r++)
             {
-                for(int c = 0; c < 4; c++)
+                for (int c = 0; c < 4; c++)
                 {
                     PictureBox card = new PictureBox();
                     int rngNum = rng.Next(icons.Count);
                     card.BorderStyle = BorderStyle.Fixed3D;
                     card.BackgroundImage = icons[rngNum];
+                    location[i] = icons[rngNum].Tag.ToString();
                     icons.RemoveAt(rngNum);
                     card.Image = Image.FromFile(@"./imgs/back.png");
                     card.Size = new Size(104, 154);
@@ -387,10 +409,16 @@ namespace Memory_Project
                     Game_Screen.Controls.Add(card);
 
                     x += 105;
+
+                    i++;
                 }
                 x = 5;
                 y += 155;
             }
+            Label testLabel = new Label();
+            testLabel.Location = new Point(640, 640);
+            testLabel.Text = location[0];
+            Game_Screen.Controls.Add(testLabel);
         }
 
         /// <summary>
@@ -452,7 +480,7 @@ namespace Memory_Project
         {
             Reset_Button.Enabled = true;
 
-            foreach(PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+            foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
             {
                 if (pic.Image != null)
                 {
@@ -490,6 +518,163 @@ namespace Memory_Project
                 case 0:
                     spelersLabel.Text = playerTwo.Text + " is aan de beurt.";
                     break;
+            }
+        }
+
+        private void Continue_Button_Click(object sender, EventArgs e)
+        {
+            string[] lines = File.ReadAllLines(@"./memory.sav");
+
+            Game_Screen.Text = "Memory Game";
+            Game_Screen.Icon = this.Icon;
+            Game_Screen.StartPosition = FormStartPosition.CenterScreen;
+            Game_Screen.Size = new Size(650, 665);
+            Game_Screen.Show();
+            // Maakt de FormClosing event aan
+            Game_Screen.FormClosing += new FormClosingEventHandler(Game_Screen_FormClosing);
+
+            playerOne.Text = lines[3];
+            playerTwo.Text = lines[4];
+
+            if (GridInit == false)
+            {
+                GridInit = true;
+
+                InitUI();
+
+                spelersLabel.Text = lines[0];
+                score2Label.Text = lines[1];
+                score4Label.Text = lines[2];
+                beurt = Convert.ToInt32(lines[21]);
+
+                int x = 5;
+                int y = 5;
+                int i = 0;
+                int l = 5;
+                #region Foto's
+                icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
+                icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
+                icons[0].Tag = "0";
+                icons[1].Tag = "0";
+                icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
+                icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
+                icons[2].Tag = "1";
+                icons[3].Tag = "1";
+                icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
+                icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
+                icons[4].Tag = "2";
+                icons[5].Tag = "2";
+                icons.Add(Image.FromFile(@"./imgs/Orange.png"));
+                icons.Add(Image.FromFile(@"./imgs/Orange.png"));
+                icons[6].Tag = "3";
+                icons[7].Tag = "3";
+                icons.Add(Image.FromFile(@"./imgs/Pink.png"));
+                icons.Add(Image.FromFile(@"./imgs/Pink.png"));
+                icons[8].Tag = "4";
+                icons[9].Tag = "4";
+                icons.Add(Image.FromFile(@"./imgs/Purple.png"));
+                icons.Add(Image.FromFile(@"./imgs/Purple.png"));
+                icons[10].Tag = "5";
+                icons[11].Tag = "5";
+                icons.Add(Image.FromFile(@"./imgs/Red.png"));
+                icons.Add(Image.FromFile(@"./imgs/Red.png"));
+                icons[12].Tag = "6";
+                icons[13].Tag = "6";
+                icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
+                icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
+                icons[14].Tag = "7";
+                icons[15].Tag = "7";
+                #endregion Foto's 
+                for (int r = 0; r < 4; r++)
+                {
+                    for (int c = 0; c < 4; c++)
+                    {
+                        PictureBox card = new PictureBox();
+                        card.BorderStyle = BorderStyle.Fixed3D;
+                        switch (lines[l])
+                        {
+                            case "0":
+                                card.BackgroundImage = icons[0];
+                                location[i] = 0.ToString();
+                                break;
+                            case "1":
+                                card.BackgroundImage = icons[2];
+                                location[i] = 1.ToString();
+                                break;
+                            case "2":
+                                card.BackgroundImage = icons[4];
+                                location[i] = 2.ToString();
+                                break;
+                            case "3":
+                                card.BackgroundImage = icons[6];
+                                location[i] = 3.ToString();
+                                break;
+                            case "4":
+                                card.BackgroundImage = icons[8];
+                                location[i] = 4.ToString();
+                                break;
+                            case "5":
+                                card.BackgroundImage = icons[10];
+                                location[i] = 5.ToString();
+                                break;
+                            case "6":
+                                card.BackgroundImage = icons[12];
+                                location[i] = 6.ToString();
+                                break;
+                            case "7":
+                                card.BackgroundImage = icons[14];
+                                location[i] = 7.ToString();
+                                break;
+                        }
+                        card.Image = Image.FromFile(@"./imgs/back.png");
+                        card.Size = new Size(104, 154);
+                        card.Location = new Point(x, y);
+                        card.Cursor = Cursors.Hand;
+                        card.Click += new EventHandler(this.Card_Click);
+
+                        Game_Screen.Controls.Add(card);
+
+                        if (lines[l] == "")
+                        {
+                            Game_Screen.Controls.Remove(card);
+                        }
+
+                        x += 105;
+
+                        i++;
+                        l++;
+                    }
+                    x = 5;
+                    y += 155;
+                }
+                Label testLabel = new Label();
+                testLabel.Location = new Point(640, 640);
+                testLabel.Text = location[0];
+                Game_Screen.Controls.Add(testLabel);
+            }
+        }
+
+        private void Highscores_Button_Click(object sender, EventArgs e)
+        {
+            Highscores_Button.Enabled = false;
+
+            Highscore_Screen.FormClosing += new FormClosingEventHandler(Highscore_Screen_FormClosing);
+
+            Highscore_Screen.StartPosition = FormStartPosition.CenterScreen;
+            Highscore_Screen.Size = new Size(650, 600);
+            Highscore_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
+            Highscore_Screen.Icon = this.Icon;
+            Highscore_Screen.Text = "Highscores";
+            Highscore_Screen.Show();
+        }
+
+        private void Highscore_Screen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Highscores_Button.Enabled = true;
+                e.Cancel = true;
+                Highscore_Screen.Hide();
             }
         }
 
