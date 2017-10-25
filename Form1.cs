@@ -105,6 +105,7 @@ namespace Memory_Project
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 Start_Button.Enabled = true;
+                Continue_Button.Enabled = true;
                 e.Cancel = true;
                 Game_Screen.Hide();
             }
@@ -129,6 +130,7 @@ namespace Memory_Project
         {
             // Zet de Start button uit om bugs te voorkomen (deze worden later weer aangezet)
             Start_Button.Enabled = false;
+            Continue_Button.Enabled = false;
             Name_Screen.ShowIcon = false;
             Name_Screen.MaximizeBox = false;
             Name_Screen.StartPosition = FormStartPosition.CenterScreen;
@@ -539,6 +541,8 @@ namespace Memory_Project
             string[] lines = File.ReadAllLines(@"./memory.sav");
 
             Game_Screen.Text = "Memory Game";
+            Continue_Button.Enabled = false;
+            Start_Button.Enabled = false;
             Game_Screen.MaximizeBox = false;
             Game_Screen.Icon = this.Icon;
             Game_Screen.StartPosition = FormStartPosition.CenterScreen;
