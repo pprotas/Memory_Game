@@ -34,6 +34,7 @@ namespace Memory_Project
 
         Form Name_Screen = new Form(); // Het scherm waarin je de namen invoert
         Form Game_Screen = new Form(); // Het scherm waarin het spel wordt gespeeld    
+        Form Highscore_Screen = new Form(); // Het scherm waarin de highscores worden weergegeven
 
         Button Reset_Button = new Button(); // Reset knop die de grid reset => zie Reset_Button_Click
 
@@ -120,21 +121,22 @@ namespace Memory_Project
             Start_Button.Enabled = false;
             Name_Screen.Icon = this.Icon;
             Name_Screen.StartPosition = FormStartPosition.CenterScreen;
-            Name_Screen.Size = new Size(100, 225);
+            Name_Screen.Size = new Size(200, 200);
             Name_Screen.Show();
+            Name_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             if (NameScreen == false)
             {
                 NameScreen = true;
                 Button OK_Button = new Button();
-                OK_Button.Location = new Point(25, 95);
+                OK_Button.Location = new Point(17, 95);
                 OK_Button.Size = Start_Button.Size;
                 OK_Button.Font = Start_Button.Font;
                 OK_Button.Text = "OK";
                 Name_Screen.Controls.Add(OK_Button);
                 OK_Button.Click += new EventHandler(this.OK_Button_Click);
 
-                playerOne.Location = new Point(40, 20);
+                playerOne.Location = new Point(42, 20);
                 Name_Screen.Controls.Add(playerOne);
 
                 Label playerOneLabel = new Label();
@@ -142,7 +144,7 @@ namespace Memory_Project
                 playerOneLabel.Text = "Speler 1 naam: ";
                 Name_Screen.Controls.Add(playerOneLabel);
 
-                playerTwo.Location = new Point(40, 70);
+                playerTwo.Location = new Point(42, 70);
                 Name_Screen.Controls.Add(playerTwo);
 
                 Label playerTwoLabel = new Label();
@@ -167,6 +169,7 @@ namespace Memory_Project
             Game_Screen.StartPosition = FormStartPosition.CenterScreen;
             Game_Screen.Size = new Size(650, 665);
             Game_Screen.Show();
+            Game_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
             // Maakt de FormClosing event aan
             Game_Screen.FormClosing += new FormClosingEventHandler(Game_Screen_FormClosing);
 
@@ -648,6 +651,30 @@ namespace Memory_Project
                 testLabel.Location = new Point(640, 640);
                 testLabel.Text = location[0];
                 Game_Screen.Controls.Add(testLabel);
+            }
+        }
+
+        private void Highscores_Button_Click(object sender, EventArgs e)
+        {
+            Highscores_Button.Enabled = false;
+
+            Highscore_Screen.FormClosing += new FormClosingEventHandler(Highscore_Screen_FormClosing);
+
+            Highscore_Screen.StartPosition = FormStartPosition.CenterScreen;
+            Highscore_Screen.Size = new Size(650, 600);
+            Highscore_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
+            Highscore_Screen.Icon = this.Icon;
+            Highscore_Screen.Text = "Highscores";
+            Highscore_Screen.Show();
+        }
+
+        private void Highscore_Screen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Highscores_Button.Enabled = true;
+                e.Cancel = true;
+                Highscore_Screen.Hide();
             }
         }
 
