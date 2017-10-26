@@ -116,6 +116,7 @@ namespace Memory_Project
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 Start_Button.Enabled = true;
+                Continue_Button.Enabled = true;
                 e.Cancel = true;
                 Name_Screen.Hide();
             }
@@ -175,6 +176,55 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void OK_Button_Click(object sender, EventArgs e)
         {
+            beurt = 1;
+            Reset_Button.Enabled = false;
+            // Reset de mogelijk aangeklikte knoppen om bugs te voorkomen
+            firstClicked = null;
+            secondClicked = null;
+
+            // Verwijdert alles van de Game_Screen
+            Game_Screen.Controls.Clear();
+
+            // Verwijdert alles uit de List van plaatjes en zet weer de goeie plaatjes erin
+            icons.Clear();
+            #region Foto's
+            icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
+            icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
+            icons[0].Tag = "0";
+            icons[1].Tag = "0";
+            icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
+            icons.Add(Image.FromFile(@"./imgs/LBlue.png"));
+            icons[2].Tag = "1";
+            icons[3].Tag = "1";
+            icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
+            icons.Add(Image.FromFile(@"./imgs/LGreen.png"));
+            icons[4].Tag = "2";
+            icons[5].Tag = "2";
+            icons.Add(Image.FromFile(@"./imgs/Orange.png"));
+            icons.Add(Image.FromFile(@"./imgs/Orange.png"));
+            icons[6].Tag = "3";
+            icons[7].Tag = "3";
+            icons.Add(Image.FromFile(@"./imgs/Pink.png"));
+            icons.Add(Image.FromFile(@"./imgs/Pink.png"));
+            icons[8].Tag = "4";
+            icons[9].Tag = "4";
+            icons.Add(Image.FromFile(@"./imgs/Purple.png"));
+            icons.Add(Image.FromFile(@"./imgs/Purple.png"));
+            icons[10].Tag = "5";
+            icons[11].Tag = "5";
+            icons.Add(Image.FromFile(@"./imgs/Red.png"));
+            icons.Add(Image.FromFile(@"./imgs/Red.png"));
+            icons[12].Tag = "6";
+            icons[13].Tag = "6";
+            icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
+            icons.Add(Image.FromFile(@"./imgs/Yellow.png"));
+            icons[14].Tag = "7";
+            icons[15].Tag = "7";
+            #endregion Foto's 
+
+            InitGrid();
+            InitUI();
+
             Name_Screen.Hide();
 
             // Initialiseert het game venster
@@ -986,7 +1036,7 @@ namespace Memory_Project
 
             Highscore_Screen.StartPosition = FormStartPosition.CenterScreen;
             Highscore_Screen.MaximizeBox = false;
-            Highscore_Screen.Size = new Size(650, 600);
+            Highscore_Screen.Size = new Size(220, 300);
             Highscore_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
             Highscore_Screen.Icon = this.Icon;
             Highscore_Screen.Text = "Highscores";
@@ -994,7 +1044,7 @@ namespace Memory_Project
 
             if (!File.Exists(@"./highscores.sav"))
             {
-                string[] q = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" };
+                string[] q = { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" };
                 File.Create(@"./highscores.sav").Close();
                 File.WriteAllLines(@"./highscores.sav", q);
             }
@@ -1006,7 +1056,7 @@ namespace Memory_Project
             {
                 Label highscoreNumberLabel = new Label();
                 highscoreNumberLabel.Location = new Point(x, y);
-                highscoreNumberLabel.Text = (i + 1) + "." ;
+                highscoreNumberLabel.Text = (i + 1) + ".";
                 highscoreNumberLabel.Size = new Size(25, 20);
                 Highscore_Screen.Controls.Add(highscoreNumberLabel);
                 y += 25;
@@ -1016,7 +1066,8 @@ namespace Memory_Project
             y = 10;
             for (int i = 0; i < 10; i++)
             {
-                Label highscoreNameLabel = new Label();
+                TextBox highscoreNameLabel = new TextBox();
+                highscoreNameLabel.ReadOnly = true;
                 highscoreNameLabel.Location = new Point(x, y);
                 highscoreNameLabel.Text = highscores[(i + 10)];
                 highscoreNameLabel.Size = new Size(70, 20);
@@ -1028,7 +1079,8 @@ namespace Memory_Project
             y = 10;
             for (int i = 0; i < 10; i++)
             {
-                Label highscoreLabel = new Label();
+                TextBox highscoreLabel = new TextBox();
+                highscoreLabel.ReadOnly = true;
                 highscoreLabel.Location = new Point(x, y);
                 highscoreLabel.Text = highscores[i];
                 Highscore_Screen.Controls.Add(highscoreLabel);

@@ -37,3 +37,13 @@ C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\
 C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory Project\obj\Debug\Memory Project.csproj.CoreCompileInputs.cache
 C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory Project\obj\Debug\Memory Project test.exe
 C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory Project\obj\Debug\Memory Project test.pdb
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\obj\Debug\Memory Project.csprojResolveAssemblyReference.cache
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\obj\Debug\Memory_Project.Start_Screen.resources
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\obj\Debug\Memory_Project.Properties.Resources.resources
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\obj\Debug\Memory Project.csproj.GenerateResource.Cache
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\obj\Debug\Memory Project.csproj.CoreCompileInputs.cache
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\bin\Debug\Memory Game.exe.config
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\bin\Debug\Memory Game.exe
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\bin\Debug\Memory Game.pdb
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\obj\Debug\Memory Game.exe
+C:\Users\Pawel\OneDrive - Noordelijke Hogeschool Leeuwarden\School\Programmeren\Projecten\Memory\obj\Debug\Memory Game.pdb
