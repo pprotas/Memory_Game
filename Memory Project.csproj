@@ -86,6 +86,15 @@
     <None Include="Resources\Untitled.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\imgs\back.png" />
+    <None Include="bin\Debug\imgs\Cyan.png" />
+    <None Include="bin\Debug\imgs\LBlue.png" />
+    <None Include="bin\Debug\imgs\LGreen.png" />
+    <None Include="bin\Debug\imgs\Orange.png" />
+    <None Include="bin\Debug\imgs\Pink.png" />
+    <None Include="bin\Debug\imgs\Purple.png" />
+    <None Include="bin\Debug\imgs\Red.png" />
+    <None Include="bin\Debug\imgs\Yellow.png" />
     <Content Include="Double-J-Design-Ravenna-3d-Memory.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
