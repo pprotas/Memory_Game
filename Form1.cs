@@ -358,6 +358,7 @@ namespace Memory_Project
             {
                 MessageBox.Show("Gelijkspel met scores van " + score2Label.Text + "!");
             }
+            SaveHighscore();
             #region Foto's
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
             icons.Add(Image.FromFile(@"./imgs/Cyan.png"));
@@ -392,6 +393,311 @@ namespace Memory_Project
             icons[14].Tag = "7";
             icons[15].Tag = "7";
             #endregion Foto's 
+        }
+
+        void SaveHighscore()
+        {
+            if (!File.Exists(@"./highscores.sav"))
+            {
+                string[] q = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"};
+                File.Create(@"./highscores.sav").Close();
+                File.WriteAllLines(@"./highscores.sav", q);
+            }
+            string[] highscores = File.ReadAllLines(@"./highscores.sav");
+            for (int i = 0; i < 10; i++)
+            {
+                if (highscores[i] == "")
+                {
+                    highscores[i] = "0";
+                }
+            }
+            #region Highscore speler 1 opslaan
+            if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[0]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
+                highscores[2] = highscores[1];
+                highscores[1] = highscores[0];
+                highscores[0] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = highscores[13];
+                highscores[13] = highscores[12];
+                highscores[12] = highscores[11];
+                highscores[11] = highscores[10];
+                highscores[10] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[1]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
+                highscores[2] = highscores[1];
+                highscores[1] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = highscores[13];
+                highscores[13] = highscores[12];
+                highscores[12] = highscores[11];
+                highscores[11] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[2]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
+                highscores[2] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = highscores[13];
+                highscores[13] = highscores[12];
+                highscores[12] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[3]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = highscores[3];
+                highscores[3] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = highscores[13];
+                highscores[13] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[4]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[5]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[6]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[7]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[8]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = score2Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = playerOne.Text;
+            }
+            else if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(highscores[9]))
+            {
+                highscores[9] = score2Label.Text;
+                highscores[19] = playerOne.Text;
+            }
+            #endregion
+            #region Highscore speler 2 opslaan
+            if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[0]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
+                highscores[2] = highscores[1];
+                highscores[1] = highscores[0];
+                highscores[0] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = highscores[13];
+                highscores[13] = highscores[12];
+                highscores[12] = highscores[11];
+                highscores[11] = highscores[10];
+                highscores[10] = playerTwo.Text;
+
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[1]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
+                highscores[2] = highscores[1];
+                highscores[1] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = highscores[13];
+                highscores[13] = highscores[12];
+                highscores[12] = highscores[11];
+                highscores[11] = playerTwo.Text;
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[2]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = highscores[3];
+                highscores[3] = highscores[2];
+                highscores[2] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = highscores[13];
+                highscores[13] = highscores[12];
+                highscores[12] = playerTwo.Text;
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[3]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = highscores[3];
+                highscores[3] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = highscores[13];
+                highscores[13] = playerTwo.Text;
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[4]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = highscores[4];
+                highscores[4] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = highscores[14];
+                highscores[14] = playerTwo.Text;
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[5]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = highscores[5];
+                highscores[5] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = highscores[15];
+                highscores[15] = playerTwo.Text;
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[6]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = highscores[6];
+                highscores[6] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = highscores[16];
+                highscores[16] = playerTwo.Text;
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[7]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = highscores[7];
+                highscores[7] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = highscores[17];
+                highscores[17] = playerTwo.Text;
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[8]))
+            {
+                highscores[9] = highscores[8];
+                highscores[8] = score4Label.Text;
+                highscores[19] = highscores[18];
+                highscores[18] = playerTwo.Text;
+            }
+            else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(highscores[9]))
+            {
+                highscores[9] = score4Label.Text;
+                highscores[19] = playerTwo.Text;
+            }
+            #endregion
+
+            File.WriteAllLines(@"./highscores.sav", highscores);
         }
 
         /// <summary>
@@ -685,6 +991,49 @@ namespace Memory_Project
             Highscore_Screen.Icon = this.Icon;
             Highscore_Screen.Text = "Highscores";
             Highscore_Screen.Show();
+
+            if (!File.Exists(@"./highscores.sav"))
+            {
+                string[] q = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" };
+                File.Create(@"./highscores.sav").Close();
+                File.WriteAllLines(@"./highscores.sav", q);
+            }
+
+            string[] highscores = File.ReadAllLines(@"./highscores.sav");
+
+            int x = 5, y = 10;
+            for (int i = 0; i < 10; i++)
+            {
+                Label highscoreNumberLabel = new Label();
+                highscoreNumberLabel.Location = new Point(x, y);
+                highscoreNumberLabel.Text = (i + 1) + "." ;
+                highscoreNumberLabel.Size = new Size(25, 20);
+                Highscore_Screen.Controls.Add(highscoreNumberLabel);
+                y += 25;
+            }
+
+            x = 30;
+            y = 10;
+            for (int i = 0; i < 10; i++)
+            {
+                Label highscoreNameLabel = new Label();
+                highscoreNameLabel.Location = new Point(x, y);
+                highscoreNameLabel.Text = highscores[(i + 10)];
+                highscoreNameLabel.Size = new Size(70, 20);
+                Highscore_Screen.Controls.Add(highscoreNameLabel);
+                y += 25;
+            }
+
+            x = 100;
+            y = 10;
+            for (int i = 0; i < 10; i++)
+            {
+                Label highscoreLabel = new Label();
+                highscoreLabel.Location = new Point(x, y);
+                highscoreLabel.Text = highscores[i];
+                Highscore_Screen.Controls.Add(highscoreLabel);
+                y += 25;
+            }
         }
 
         private void Highscore_Screen_FormClosing(object sender, FormClosingEventArgs e)
