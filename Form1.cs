@@ -479,6 +479,12 @@ namespace Memory_Project
                             score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) + 50);
                             break;
                     }
+                    foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+                    {
+                        pic.Enabled = false;
+                    }
+                    // Zet de reset knop tijdelijk uit om bugs te voorkomen
+                    Reset_Button.Enabled = false;
                     CheckWinner();
                     timer2.Start();
                     
@@ -1246,6 +1252,15 @@ namespace Memory_Project
         private void timer2_Tick(object sender, EventArgs e)
         {
             timer2.Stop();
+            Reset_Button.Enabled = true;
+
+            foreach (PictureBox pic in Game_Screen.Controls.OfType<PictureBox>())
+            {
+                if (pic.Image != null)
+                {
+                    pic.Enabled = true;
+                }
+            }
             Game_Screen.Controls.Remove(firstClicked);
             Game_Screen.Controls.Remove(secondClicked);
             firstClicked = null;
