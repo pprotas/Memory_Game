@@ -58,7 +58,7 @@ namespace Memory_Project
             InitializeComponent();
 
             this.CenterToScreen();
-
+            back.Tag = "0";
             playerOne.Text = "Speler 1";
             playerTwo.Text = "Speler 2";
 
@@ -105,7 +105,7 @@ namespace Memory_Project
         /// <param name="e"></param>
         private void Game_Screen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            File.WriteAllText(@"./memory.sav", string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n{11}\n{12}\n{13}\n{14}\n{15}\n{16}\n{17}\n{18}\n{19}\n{20}\n{21}", spelersLabel.Text, score2Label.Text, score4Label.Text, playerOne.Text, playerTwo.Text, location[0], location[1], location[2], location[3], location[4], location[5], location[6], location[7], location[8], location[9], location[10], location[11], location[12], location[13], location[14], location[15], beurt));
+            File.WriteAllText(@"./memory.sav", string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}\n{8}\n{9}\n{10}\n{11}\n{12}\n{13}\n{14}\n{15}\n{16}\n{17}\n{18}\n{19}\n{20}\n{21}\n{22}", spelersLabel.Text, score2Label.Text, score4Label.Text, playerOne.Text, playerTwo.Text, location[0], location[1], location[2], location[3], location[4], location[5], location[6], location[7], location[8], location[9], location[10], location[11], location[12], location[13], location[14], location[15], beurt, back.Tag.ToString()));
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 Start_Button.Enabled = true;
@@ -204,40 +204,48 @@ namespace Memory_Project
             {
                 for(int c = 0; c < 4; c++)
                 {
-                    PictureBox back = new PictureBox();
-                    back.Location = new Point(x, y);
-                    back.Size = new Size(100, 150);
-                    back.BorderStyle = BorderStyle.Fixed3D;
-                    back.Cursor = Cursors.Hand;
-                    back.Click += new EventHandler(this.Back_Click);
+                    PictureBox backk = new PictureBox();
+                    backk.Location = new Point(x, y);
+                    backk.Size = new Size(100, 150);
+                    backk.BorderStyle = BorderStyle.Fixed3D;
+                    backk.Cursor = Cursors.Hand;
+                    backk.Click += new EventHandler(this.Back_Click);
                     switch (i)
                     {
                         case 0:
-                            back.Image = Properties.Resources.back;
+                            backk.Image = Properties.Resources.back;
+                            backk.Tag = "0";
                             break;
                         case 1:
-                            back.Image = Properties.Resources.background1;
+                            backk.Image = Properties.Resources.background1;
+                            backk.Tag = "1";
                             break;
                         case 2:
-                            back.Image = Properties.Resources.background2;
+                            backk.Image = Properties.Resources.background2;
+                            backk.Tag = "2";
                             break;
                         case 3:
-                            back.Image = Properties.Resources.background3;
+                            backk.Image = Properties.Resources.background3;
+                            backk.Tag = "3";
                             break;
                         case 4:
-                            back.Image = Properties.Resources.background4;
+                            backk.Image = Properties.Resources.background4;
+                            backk.Tag = "4";
                             break;
                         case 5:
-                            back.Image = Properties.Resources.background5;
+                            backk.Image = Properties.Resources.background5;
+                            backk.Tag = "5";
                             break;
                         case 6:
-                            back.Image = Properties.Resources.background6;
+                            backk.Image = Properties.Resources.background6;
+                            backk.Tag = "6";
                             break;
                         case 7:
-                            back.Image = Properties.Resources.background7;
+                            backk.Image = Properties.Resources.background7;
+                            backk.Tag = "7";
                             break;
                     }
-                    Settings_Screen.Controls.Add(back);
+                    Settings_Screen.Controls.Add(backk);
                     i++;
                     x += 105;
                 }
@@ -252,6 +260,7 @@ namespace Memory_Project
 
             Settings_Screen.Close();
             back = clickedBack.Image;
+            back.Tag = clickedBack.Tag;
         }
 
         private void Settings_Screen_FormClosing(object sender, FormClosingEventArgs e)
@@ -466,10 +475,9 @@ namespace Memory_Project
                             break;
                     }
                     CheckWinner();
-                    Game_Screen.Controls.Remove(firstClicked);
-                    Game_Screen.Controls.Remove(secondClicked);
-                    firstClicked = null;
-                    secondClicked = null;
+                    timer2.Start();
+                    
+                    
                     return;
                 }
                 return;
@@ -1006,6 +1014,41 @@ namespace Memory_Project
             playerOne.Text = lines[3];
             playerTwo.Text = lines[4];
 
+            switch (lines[22])
+            {
+                case "0":
+                    back = global::Memory_Project.Properties.Resources.back;
+                    back.Tag = "0";
+                    break;
+                case "1":
+                    back = global::Memory_Project.Properties.Resources.background1;
+                    back.Tag = "1";
+                    break;
+                case "2":
+                    back = global::Memory_Project.Properties.Resources.background2;
+                    back.Tag = "2";
+                    break;
+                case "3":
+                    back = global::Memory_Project.Properties.Resources.background3;
+                    back.Tag = "3";
+                    break;
+                case "4":
+                    back = global::Memory_Project.Properties.Resources.background4;
+                    back.Tag = "4";
+                    break;
+                case "5":
+                    back = global::Memory_Project.Properties.Resources.background5;
+                    back.Tag = "5";
+                    break;
+                case "6":
+                    back = global::Memory_Project.Properties.Resources.background6;
+                    back.Tag = "6";
+                    break;
+                case "7":
+                    back = global::Memory_Project.Properties.Resources.background7;
+                    back.Tag = "7";
+                    break;
+            }
             if (GridInit == false)
             {
                 GridInit = true;
@@ -1016,6 +1059,7 @@ namespace Memory_Project
                 score2Label.Text = lines[1];
                 score4Label.Text = lines[2];
                 beurt = Convert.ToInt32(lines[21]);
+                
 
                 int x = 5;
                 int y = 5;
@@ -1192,6 +1236,15 @@ namespace Memory_Project
                 e.Cancel = true;
                 Highscore_Screen.Hide();
             }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            timer2.Stop();
+            Game_Screen.Controls.Remove(firstClicked);
+            Game_Screen.Controls.Remove(secondClicked);
+            firstClicked = null;
+            secondClicked = null;
         }
 
         /// <summary>
