@@ -27,6 +27,8 @@ namespace Memory_Project
         // Onthoudt welke kaart welk plaatje heeft door middel van Tag
         public string[] location = new string[16];
 
+        Image back = global::Memory_Project.Properties.Resources.back;
+
         // Overige variabelen
         int res, beurt = 1;
 
@@ -36,6 +38,7 @@ namespace Memory_Project
         Form Name_Screen = new Form(); // Het scherm waarin je de namen invoert
         Form Game_Screen = new Form(); // Het scherm waarin het spel wordt gespeeld    
         Form Highscore_Screen = new Form(); // Het scherm waarin de highscores worden weergegeven
+        Form Settings_Screen = new Form();
 
         Button Reset_Button = new Button(); // Reset knop die de grid reset => zie Reset_Button_Click
 
@@ -136,7 +139,7 @@ namespace Memory_Project
             Name_Screen.ShowIcon = false;
             Name_Screen.MaximizeBox = false;
             Name_Screen.StartPosition = FormStartPosition.CenterScreen;
-            Name_Screen.Size = new Size(200, 200);
+            Name_Screen.Size = new Size(200, 250);
             Name_Screen.Show();
             Name_Screen.FormBorderStyle = FormBorderStyle.FixedSingle;
 
@@ -151,6 +154,14 @@ namespace Memory_Project
                 OK_Button.Text = "OK";
                 Name_Screen.Controls.Add(OK_Button);
                 OK_Button.Click += new EventHandler(this.OK_Button_Click);
+
+                Button Settings_Button = new Button();
+                Settings_Button.Location = new Point(17, 150);
+                Settings_Button.Size = Start_Button.Size;
+                Settings_Button.Font = OK_Button.Font;
+                Settings_Button.Text = "Settings";
+                Name_Screen.Controls.Add(Settings_Button);
+                Settings_Button.Click += new EventHandler(this.Settings_Button_Click);
 
                 playerOne.Location = new Point(42, 20);
                 Name_Screen.Controls.Add(playerOne);
@@ -167,6 +178,88 @@ namespace Memory_Project
                 playerTwoLabel.Location = new Point(55, 55);
                 playerTwoLabel.Text = "Speler 2 naam: ";
                 Name_Screen.Controls.Add(playerTwoLabel);
+            }
+        }
+
+        private void Settings_Button_Click(object sender, EventArgs e)
+        {
+            Settings_Screen.Size = new Size(450, 370);
+            Settings_Screen.StartPosition = FormStartPosition.CenterScreen;
+            Settings_Screen.Text = "Settings";
+            Settings_Screen.Icon = this.Icon;
+            Settings_Screen.MaximizeBox = false;
+            Settings_Screen.FormClosing += new FormClosingEventHandler(Settings_Screen_FormClosing);
+            Settings_Screen.Show();
+
+            Label settingsLabel = new Label();
+            settingsLabel.Text = "Choose your card back!";
+            settingsLabel.Size = new Size(1000, 15);
+            settingsLabel.Location = new Point(160, 5);
+            Settings_Screen.Controls.Add(settingsLabel);
+
+            int i = 0;
+            int x = 10;
+            int y = 20;
+            for(int r = 0; r < 2; r++)
+            {
+                for(int c = 0; c < 4; c++)
+                {
+                    PictureBox back = new PictureBox();
+                    back.Location = new Point(x, y);
+                    back.Size = new Size(100, 150);
+                    back.BorderStyle = BorderStyle.Fixed3D;
+                    back.Cursor = Cursors.Hand;
+                    back.Click += new EventHandler(this.Back_Click);
+                    switch (i)
+                    {
+                        case 0:
+                            back.Image = Properties.Resources.back;
+                            break;
+                        case 1:
+                            back.Image = Properties.Resources.background1;
+                            break;
+                        case 2:
+                            back.Image = Properties.Resources.background2;
+                            break;
+                        case 3:
+                            back.Image = Properties.Resources.background3;
+                            break;
+                        case 4:
+                            back.Image = Properties.Resources.background4;
+                            break;
+                        case 5:
+                            back.Image = Properties.Resources.background5;
+                            break;
+                        case 6:
+                            back.Image = Properties.Resources.background6;
+                            break;
+                        case 7:
+                            back.Image = Properties.Resources.background7;
+                            break;
+                    }
+                    Settings_Screen.Controls.Add(back);
+                    i++;
+                    x += 105;
+                }
+                x = 10;
+                y += 155;
+            }
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            PictureBox clickedBack = sender as PictureBox;
+
+            Settings_Screen.Close();
+            back = clickedBack.Image;
+        }
+
+        private void Settings_Screen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Settings_Screen.Hide();
             }
         }
 
@@ -774,7 +867,7 @@ namespace Memory_Project
                     card.BackgroundImage = icons[rngNum];
                     location[i] = icons[rngNum].Tag.ToString();
                     icons.RemoveAt(rngNum);
-                    card.Image = global::Memory_Project.Properties.Resources.back;
+                    card.Image = back;
                     card.Size = new Size(104, 154);
                     card.Location = new Point(x, y);
                     card.Cursor = Cursors.Hand;
@@ -863,8 +956,8 @@ namespace Memory_Project
             }
 
             timer1.Stop();
-            firstClicked.Image = global::Memory_Project.Properties.Resources.back;
-            secondClicked.Image = global::Memory_Project.Properties.Resources.back;
+            firstClicked.Image = back;
+            secondClicked.Image = back;
             firstClicked.Enabled = true;
             firstClicked = null;
             secondClicked.Enabled = true;
@@ -1003,7 +1096,7 @@ namespace Memory_Project
                                 location[i] = 7.ToString();
                                 break;
                         }
-                        card.Image = global::Memory_Project.Properties.Resources.back;
+                        card.Image = back;
                         card.Size = new Size(104, 154);
                         card.Location = new Point(x, y);
                         card.Cursor = Cursors.Hand;

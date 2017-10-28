@@ -86,6 +86,13 @@
     <None Include="Resources\Untitled.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\background7.png" />
+    <None Include="Resources\background6.png" />
+    <None Include="Resources\background5.png" />
+    <None Include="Resources\background4.png" />
+    <None Include="Resources\background3.png" />
+    <None Include="Resources\background2.png" />
+    <None Include="Resources\background1.png" />
     <None Include="bin\Debug\imgs\back.png" />
     <None Include="bin\Debug\imgs\Cyan.png" />
     <None Include="bin\Debug\imgs\LBlue.png" />
