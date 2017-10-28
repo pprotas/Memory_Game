@@ -86,6 +86,7 @@
     <None Include="Resources\Untitled.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\re.png" />
     <None Include="Resources\background7.png" />
     <None Include="Resources\background6.png" />
     <None Include="Resources\background5.png" />

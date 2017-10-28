@@ -27,7 +27,8 @@ namespace Memory_Project
         // Onthoudt welke kaart welk plaatje heeft door middel van Tag
         public string[] location = new string[16];
 
-        Image back = global::Memory_Project.Properties.Resources.back;
+        Image back = global::Memory_Project.Properties.Resources.re;
+
 
         // Overige variabelen
         int res, beurt = 1;
@@ -51,6 +52,9 @@ namespace Memory_Project
         // Deze 2 variabelen worden gebruikt om te bepalen welke 2 kaarten worden aangeklikt
         PictureBox firstClicked = null;
         PictureBox secondClicked = null;
+
+        int bonus1 = 0;
+        int bonus2 = 0;
 
         /// <summary>
         /// Zorgt ervoor dat het menu in het midden van het scherm komt en vult de icons List op met plaatjes
@@ -470,12 +474,25 @@ namespace Memory_Project
                         }
                     }
                     res = beurt % 2;
+                    
                     switch (res)
                     {
                         case 1:
+                            bonus2 = 0;
+                            bonus1++;
+                            if (bonus1 >= 2)
+                            {
+                                score2Label.Text = Convert.ToString(Convert.ToInt32(score2Label.Text) + 25);
+                            }
                             score2Label.Text = Convert.ToString(Convert.ToInt32(score2Label.Text) + 50);
                             break;
                         case 0:
+                            bonus1 = 0;
+                            bonus2++;
+                            if (bonus2 >= 2)
+                            {
+                                score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) + 25);
+                            }
                             score4Label.Text = Convert.ToString(Convert.ToInt32(score4Label.Text) + 50);
                             break;
                     }
