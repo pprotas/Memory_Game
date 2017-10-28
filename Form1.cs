@@ -41,6 +41,8 @@ namespace Memory_Project
         Form Settings_Screen = new Form();
 
         Button Reset_Button = new Button(); // Reset knop die de grid reset => zie Reset_Button_Click
+        Button OK_Button = new Button();
+        Button Settings_Button = new Button();
 
         Random rng = new Random(); // Wordt gebruikt om een willekeurig plaatje te kiezen => zie InitGrid()
 
@@ -147,15 +149,14 @@ namespace Memory_Project
             {
                 NameScreen = true;
                 Name_Screen.FormClosing += new FormClosingEventHandler(Name_Screen_FormClosing);
-                Button OK_Button = new Button();
+                
                 OK_Button.Location = new Point(17, 95);
                 OK_Button.Size = Start_Button.Size;
                 OK_Button.Font = Start_Button.Font;
                 OK_Button.Text = "OK";
                 Name_Screen.Controls.Add(OK_Button);
                 OK_Button.Click += new EventHandler(this.OK_Button_Click);
-
-                Button Settings_Button = new Button();
+                
                 Settings_Button.Location = new Point(17, 150);
                 Settings_Button.Size = Start_Button.Size;
                 Settings_Button.Font = OK_Button.Font;
@@ -183,6 +184,8 @@ namespace Memory_Project
 
         private void Settings_Button_Click(object sender, EventArgs e)
         {
+            Settings_Button.Enabled = false;
+            OK_Button.Enabled = false;
             Settings_Screen.Size = new Size(450, 370);
             Settings_Screen.StartPosition = FormStartPosition.CenterScreen;
             Settings_Screen.Text = "Settings";
@@ -206,7 +209,7 @@ namespace Memory_Project
                 {
                     PictureBox backk = new PictureBox();
                     backk.Location = new Point(x, y);
-                    backk.Size = new Size(100, 150);
+                    backk.Size = new Size(105, 155);
                     backk.BorderStyle = BorderStyle.Fixed3D;
                     backk.Cursor = Cursors.Hand;
                     backk.Click += new EventHandler(this.Back_Click);
@@ -265,6 +268,8 @@ namespace Memory_Project
 
         private void Settings_Screen_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Settings_Button.Enabled = true;
+            OK_Button.Enabled = true;
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 e.Cancel = true;
