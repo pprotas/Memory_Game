@@ -27,7 +27,7 @@ namespace Memory_Project
         // Onthoudt welke kaart welk plaatje heeft door middel van Tag
         public string[] location = new string[16];
 
-        Image back = global::Memory_Project.Properties.Resources.re;
+        Image back = global::Memory_Project.Properties.Resources.back;
 
 
         // Overige variabelen
