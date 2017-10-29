@@ -529,12 +529,10 @@ namespace Memory_Project
             if (Convert.ToInt32(score2Label.Text) > Convert.ToInt32(score4Label.Text))
             {
                 MessageBox.Show(playerOne.Text + " heeft gewonnen met een score van " + score2Label.Text + "!", "Gefeliciteerd");
-                SaveHighscore();
             }
             else if (Convert.ToInt32(score4Label.Text) > Convert.ToInt32(score2Label.Text))
             {
                 MessageBox.Show(playerTwo.Text + " heeft gewonnen met een score van " + score4Label.Text + "!", "Gefeliciteerd");
-                SaveHighscore();
             }
             else
             {
