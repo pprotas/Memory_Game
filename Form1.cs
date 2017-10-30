@@ -168,7 +168,7 @@ namespace Memory_Project
                 Settings_Button.Location = new Point(17, 150);
                 Settings_Button.Size = Start_Button.Size;
                 Settings_Button.Font = OK_Button.Font;
-                Settings_Button.Text = "Settings";
+                Settings_Button.Text = "Instellingen";
                 Name_Screen.Controls.Add(Settings_Button);
                 Settings_Button.Click += new EventHandler(this.Settings_Button_Click);
 
@@ -196,7 +196,7 @@ namespace Memory_Project
             OK_Button.Enabled = false;
             Settings_Screen.Size = new Size(450, 370);
             Settings_Screen.StartPosition = FormStartPosition.CenterScreen;
-            Settings_Screen.Text = "Settings";
+            Settings_Screen.Text = "Instellingen";
             Settings_Screen.Icon = this.Icon;
             Settings_Screen.MaximizeBox = false;
             Settings_Screen.FormClosing += new FormClosingEventHandler(Settings_Screen_FormClosing);

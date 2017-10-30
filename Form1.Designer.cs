@@ -44,10 +44,10 @@
             // Start_Button
             // 
             this.Start_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Start_Button.Location = new System.Drawing.Point(24, 53);
-            this.Start_Button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Start_Button.Location = new System.Drawing.Point(32, 65);
+            this.Start_Button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Start_Button.Name = "Start_Button";
-            this.Start_Button.Size = new System.Drawing.Size(150, 50);
+            this.Start_Button.Size = new System.Drawing.Size(200, 62);
             this.Start_Button.TabIndex = 0;
             this.Start_Button.Text = "Start";
             this.Start_Button.UseVisualStyleBackColor = true;
@@ -61,10 +61,9 @@
             // GitHub_Link
             // 
             this.GitHub_Link.AutoSize = true;
-            this.GitHub_Link.Location = new System.Drawing.Point(1, 218);
-            this.GitHub_Link.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.GitHub_Link.Location = new System.Drawing.Point(1, 268);
             this.GitHub_Link.Name = "GitHub_Link";
-            this.GitHub_Link.Size = new System.Drawing.Size(68, 13);
+            this.GitHub_Link.Size = new System.Drawing.Size(90, 17);
             this.GitHub_Link.TabIndex = 1;
             this.GitHub_Link.TabStop = true;
             this.GitHub_Link.Text = "Onze GitHub";
@@ -74,32 +73,31 @@
             // 
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Modern No. 20", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(23, 26);
-            this.Title.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Title.Location = new System.Drawing.Point(31, 32);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(151, 24);
+            this.Title.Size = new System.Drawing.Size(188, 30);
             this.Title.TabIndex = 2;
             this.Title.Text = "Memory Game";
             // 
             // Continue_Button
             // 
             this.Continue_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Continue_Button.Location = new System.Drawing.Point(24, 109);
-            this.Continue_Button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Continue_Button.Location = new System.Drawing.Point(32, 134);
+            this.Continue_Button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Continue_Button.Name = "Continue_Button";
-            this.Continue_Button.Size = new System.Drawing.Size(150, 50);
+            this.Continue_Button.Size = new System.Drawing.Size(200, 62);
             this.Continue_Button.TabIndex = 3;
-            this.Continue_Button.Text = "Continue";
+            this.Continue_Button.Text = "Hervat";
             this.Continue_Button.UseVisualStyleBackColor = true;
             this.Continue_Button.Click += new System.EventHandler(this.Continue_Button_Click);
             // 
             // Highscores_Button
             // 
             this.Highscores_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Highscores_Button.Location = new System.Drawing.Point(24, 165);
-            this.Highscores_Button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Highscores_Button.Location = new System.Drawing.Point(32, 203);
+            this.Highscores_Button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Highscores_Button.Name = "Highscores_Button";
-            this.Highscores_Button.Size = new System.Drawing.Size(150, 50);
+            this.Highscores_Button.Size = new System.Drawing.Size(200, 62);
             this.Highscores_Button.TabIndex = 4;
             this.Highscores_Button.Text = "Highscores";
             this.Highscores_Button.UseVisualStyleBackColor = true;
@@ -108,9 +106,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Memory_Project.Properties.Resources.Untitled;
-            this.pictureBox1.Location = new System.Drawing.Point(191, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(255, 32);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(324, 223);
+            this.pictureBox1.Size = new System.Drawing.Size(432, 274);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
@@ -121,9 +120,9 @@
             // 
             // Start_Screen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 240);
+            this.ClientSize = new System.Drawing.Size(677, 295);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Highscores_Button);
             this.Controls.Add(this.Continue_Button);
@@ -132,7 +131,7 @@
             this.Controls.Add(this.Start_Button);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "Start_Screen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
