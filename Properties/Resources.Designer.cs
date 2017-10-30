@@ -151,6 +151,15 @@ namespace Memory_Project.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Ding_Sound_Effect {
+            get {
+                return ResourceManager.GetStream("Ding_Sound_Effect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap LBlue {
@@ -217,6 +226,15 @@ namespace Memory_Project.Properties {
             get {
                 object obj = ResourceManager.GetObject("Red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream roblox_death_sound_1 {
+            get {
+                return ResourceManager.GetStream("roblox_death_sound_1", resourceCulture);
             }
         }
         

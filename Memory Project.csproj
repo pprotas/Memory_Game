@@ -86,6 +86,8 @@
     <None Include="Resources\Untitled.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Ding_Sound_Effect.wav" />
+    <None Include="Resources\roblox-death-sound_1.wav" />
     <None Include="Resources\re.png" />
     <None Include="Resources\background7.png" />
     <None Include="Resources\background6.png" />
@@ -103,6 +105,7 @@
     <None Include="bin\Debug\imgs\Purple.png" />
     <None Include="bin\Debug\imgs\Red.png" />
     <None Include="bin\Debug\imgs\Yellow.png" />
+    <None Include="bin\Release\roblox-death-sound_1.wav" />
     <Content Include="Double-J-Design-Ravenna-3d-Memory.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

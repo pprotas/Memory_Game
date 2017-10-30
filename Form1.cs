@@ -62,6 +62,10 @@ namespace Memory_Project
         public Start_Screen()
         {
             InitializeComponent();
+            if (!File.Exists(@"./memory.sav"))
+            {
+                Continue_Button.Enabled = false;
+            }
 
             this.CenterToScreen();
             back.Tag = "0";
@@ -453,6 +457,8 @@ namespace Memory_Project
                     }
                     // Zet de reset knop tijdelijk uit om bugs te voorkomen
                     Reset_Button.Enabled = false;
+                    System.Media.SoundPlayer oof = new System.Media.SoundPlayer((global::Memory_Project.Properties.Resources.roblox_death_sound_1));
+                    oof.Play();
                     timer1.Start();
                 }
                 // Als de plaatjes wel gelijk zijn = hou het plaatje aan, reset firstClicked en secondClicker en kijk voor winnaar
@@ -502,6 +508,8 @@ namespace Memory_Project
                     }
                     // Zet de reset knop tijdelijk uit om bugs te voorkomen
                     Reset_Button.Enabled = false;
+                    System.Media.SoundPlayer ding = new System.Media.SoundPlayer((global::Memory_Project.Properties.Resources.Ding_Sound_Effect));
+                    ding.Play();
                     CheckWinner();
                     timer2.Start();
                     
